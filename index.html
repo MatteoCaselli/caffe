@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#181818">
+<title>Oggi chi paga?</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Chi paga?">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;-webkit-text-size-adjust:100%;}
+body{background:#181818;color:#e8e4de;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;overflow-x:hidden;}
+.screen{display:none;width:100%;max-width:420px;margin:0 auto;padding:16px 14px 40px;}
+.screen.active{display:block;}
+.header{display:flex;align-items:center;gap:12px;margin-bottom:24px;}
+.hicon{width:48px;height:48px;border-radius:14px;background:#2a1e0e;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;}
+.htitle{font-size:28px;font-weight:700;color:#f0ede8;flex:1;}
+.btn-icon{width:44px;height:44px;border-radius:12px;border:1.5px solid #2e2e2e;background:#242424;color:#888;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+.btn-icon:active{background:#333;}
+.gruppo-attivo{display:flex;align-items:center;gap:8px;margin-bottom:20px;padding:10px 12px;background:#202020;border:1.5px solid #2a2a2a;border-radius:12px;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+.gruppo-attivo:active{background:#282828;}
+.gruppo-nome{flex:1;font-size:15px;font-weight:500;color:#d8d4ce;}
+.toggle-mp{display:flex;margin-bottom:20px;background:#202020;border:1.5px solid #2a2a2a;border-radius:12px;padding:4px;}
+.toggle-btn{flex:1;padding:11px;border:none;border-radius:9px;background:transparent;color:#666;font-size:15px;font-weight:500;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+.toggle-btn.active-m{background:#2e1e06;color:#d4922e;}
+.toggle-btn.active-p{background:#082e1e;color:#2daa7e;}
+.sec-label{font-size:12px;font-weight:500;color:#555;letter-spacing:.07em;text-transform:uppercase;margin-bottom:10px;}
+.section{margin-bottom:24px;}
+.add-row{display:flex;gap:8px;width:100%;}
+.add-row input{flex:1;min-width:0;padding:14px 12px;border:1.5px solid #2e2e2e;border-radius:12px;background:#242424;color:#e8e4de;font-size:16px;-webkit-appearance:none;}
+.add-row input::placeholder{color:#444;}
+.add-row input:focus{outline:none;border-color:#555;}
+.btn-add{width:50px;height:50px;flex-shrink:0;border:1.5px solid #2e2e2e;border-radius:12px;background:#242424;color:#c8c4be;font-size:26px;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+.btn-add:active{background:#333;}
+.hint{font-size:12px;color:#444;margin-top:7px;}
+.colleghi-list{display:flex;flex-direction:column;gap:7px;margin-top:10px;}
+.collega-row{display:flex;align-items:center;gap:10px;padding:14px 12px;background:#222;border:1.5px solid #2a2a2a;border-radius:12px;}
+.collega-row.curr-m{border-color:#6b4a12;background:#1e1608;}
+.collega-row.curr-p{border-color:#0f4a30;background:#0a201a;}
+.c-idx{font-size:13px;color:#444;min-width:20px;}
+.c-nome{flex:1;font-size:16px;color:#d8d4ce;}
+.c-badges{display:flex;gap:5px;}
+.badge{font-size:12px;padding:3px 9px;border-radius:99px;font-weight:500;}
+.bm{background:#2e1e06;color:#d4922e;}
+.bp{background:#082e1e;color:#2daa7e;}
+.btn-rm{width:40px;height:40px;border-radius:50%;border:none;background:#2a2a2a;color:#666;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+.btn-rm:active{background:#3d1515;color:#dd4444;}
+.empty{font-size:14px;color:#3a3a3a;font-style:italic;padding:4px 0;}
+.divider{height:1px;background:#222;margin:0 0 24px;}
+.turno-card{background:#202020;border:1.5px solid #2a2a2a;border-radius:16px;padding:16px;}
+.winner-box{background:#181818;border-radius:12px;padding:16px;text-align:center;min-height:80px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;}
+.w-name{font-size:22px;font-weight:500;color:#f0ede8;}
+.w-sub{font-size:14px;color:#666;}
+.w-empty{font-size:14px;color:#333;font-style:italic;}
+.giro-txt{font-size:12px;color:#444;text-align:center;margin-top:8px;min-height:16px;}
+.skip-info{font-size:12px;color:#c87d30;margin-top:6px;text-align:center;min-height:16px;font-style:italic;}
+.btn-avanza{width:100%;margin-top:12px;padding:16px;border:1.5px solid #333;border-radius:12px;background:#282828;color:#c8c4be;font-size:16px;cursor:pointer;-webkit-tap-highlight-color:transparent;-webkit-appearance:none;touch-action:manipulation;}
+.btn-avanza:active{background:#333;}
+.btn-avanza:disabled{opacity:.25;cursor:default;}
+.btn-link{font-size:13px;color:#444;background:none;border:none;cursor:pointer;text-decoration:underline;margin-top:10px;display:block;padding:8px 0;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+.btn-link:active{color:#888;}
+.back-btn{display:flex;align-items:center;gap:6px;font-size:14px;color:#666;background:none;border:none;cursor:pointer;padding:0;margin-bottom:20px;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+.back-btn:active{color:#888;}
+.gruppi-list{display:flex;flex-direction:column;gap:8px;}
+.gruppo-row{display:flex;align-items:center;gap:10px;padding:16px 14px;background:#222;border:1.5px solid #2a2a2a;border-radius:12px;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+.gruppo-row:active{background:#2a2a2a;}
+.gruppo-row.selected{border-color:#6b4a12;background:#1e1608;}
+.gr-nome{flex:1;font-size:17px;color:#d8d4ce;}
+.gr-count{font-size:12px;color:#555;}
+</style>
+</head>
+<body>
+
+<div class="screen active" id="screen-main">
+  <div class="header">
+    <div class="hicon">&#x2615;</div>
+    <div class="htitle">Oggi chi paga?</div>
+    <button class="btn-icon" id="btn-gruppi">&#9776;</button>
+  </div>
+
+  <div class="gruppo-attivo" id="gruppo-attivo-btn">
+    <span style="font-size:13px;color:#555;">Gruppo:</span>
+    <span class="gruppo-nome" id="gruppo-nome-label">—</span>
+    <span style="font-size:12px;color:#555;">&#9660;</span>
+  </div>
+
+  <div class="section">
+    <div class="sec-label">Colleghi</div>
+    <div class="add-row">
+      <input type="text" id="input-nome" placeholder="Nome collega..." maxlength="30" autocomplete="off" autocorrect="off" autocapitalize="words"/>
+      <button class="btn-add" id="btn-add" type="button">+</button>
+    </div>
+    <div class="hint">Scrivi il nome e premi Invio oppure +</div>
+    <div class="colleghi-list" id="lista-colleghi"><span class="empty">Nessun collega aggiunto</span></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="sec-label">Turni</div>
+    <div class="toggle-mp">
+      <button class="toggle-btn active-m" id="toggle-m" type="button">&#9679; Mattina</button>
+      <button class="toggle-btn" id="toggle-p" type="button">&#9679; Pomeriggio</button>
+    </div>
+
+    <div id="panel-mattina">
+      <div class="turno-card">
+        <div class="winner-box" id="winner-mattina"><span class="w-empty">nessun turno attivo</span></div>
+        <div class="giro-txt" id="giro-mattina"></div>
+        <div class="skip-info" id="skip-mattina"></div>
+        <button class="btn-avanza" id="btn-mattina" type="button" disabled>Avanza turno mattina</button>
+        <button class="btn-link" id="reset-mattina" type="button">azzera rotazione mattina</button>
+      </div>
+    </div>
+
+    <div id="panel-pomeriggio" style="display:none;">
+      <div class="turno-card">
+        <div class="winner-box" id="winner-pomeriggio"><span class="w-empty">nessun turno attivo</span></div>
+        <div class="giro-txt" id="giro-pomeriggio"></div>
+        <div class="skip-info" id="skip-pomeriggio"></div>
+        <button class="btn-avanza" id="btn-pomeriggio" type="button" disabled>Avanza turno pomeriggio</button>
+        <button class="btn-link" id="reset-pomeriggio" type="button">azzera rotazione pomeriggio</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="screen" id="screen-gruppi">
+  <div style="padding:16px 14px 40px;max-width:420px;margin:0 auto;">
+    <button class="back-btn" id="btn-back">&#8592; Torna all'app</button>
+    <div class="header" style="margin-bottom:20px;"><div class="htitle">Gruppi</div></div>
+    <div class="sec-label">Seleziona o crea un gruppo</div>
+    <div class="gruppi-list" id="gruppi-list"></div>
+    <div class="add-row" style="margin-top:16px;">
+      <input type="text" id="input-gruppo" placeholder="Nome nuovo gruppo..." maxlength="30" autocomplete="off" autocorrect="off" autocapitalize="words"/>
+      <button class="btn-add" id="btn-add-gruppo" type="button">+</button>
+    </div>
+    <div style="margin-top:16px;">
+      <button class="btn-link" id="btn-elimina-gruppo" style="color:#663333;">elimina gruppo selezionato</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var DB_KEY='caffe_v5';
+var allData=null;
+try{allData=JSON.parse(localStorage.getItem(DB_KEY)||'null');}catch(e){}
+if(!allData) allData={gruppoAttivo:'Ufficio',gruppi:{'Ufficio':newGruppo()}};
+
+function newGruppo(){
+  return {colleghi:[],indiceM:-1,indiceP:-1,ultimoTurno:{mattina:null,pomeriggio:null}};
+}
+function G(){return allData.gruppi[allData.gruppoAttivo];}
+function salva(){try{localStorage.setItem(DB_KEY,JSON.stringify(allData));}catch(e){}}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function oggiStr(){var d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();}
+function ieriStr(){var d=new Date();d.setDate(d.getDate()-1);return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();}
+
+function calcolaProssimo(t){
+  var g=G();
+  var n=g.colleghi.length;
+  if(n===0) return {nome:null,saltati:[]};
+  var idx=t==='mattina'?g.indiceM:g.indiceP;
+  if(idx<0) return {nome:null,saltati:[]};
+  var altroT=t==='mattina'?'pomeriggio':'mattina';
+  var oggi=oggiStr();
+  var ieri=ieriStr();
+  var bloccati=[];
+  if(g.ultimoTurno[altroT]&&g.ultimoTurno[altroT].giorno===oggi) bloccati.push(g.ultimoTurno[altroT].nome);
+  if(g.ultimoTurno[t]&&g.ultimoTurno[t].giorno===ieri) bloccati.push(g.ultimoTurno[t].nome);
+  var saltati=[];
+  for(var i=0;i<n;i++){
+    var candidato=g.colleghi[(idx+i)%n];
+    if(bloccati.indexOf(candidato)<0) return {nome:candidato,saltati:saltati};
+    saltati.push(candidato);
+  }
+  return {nome:g.colleghi[idx%n],saltati:[]};
+}
+
+function render(){
+  var g=G();
+  document.getElementById('gruppo-nome-label').textContent=allData.gruppoAttivo;
+  var resM=calcolaProssimo('mattina');
+  var resP=calcolaProssimo('pomeriggio');
+  var lista=document.getElementById('lista-colleghi');
+  if(g.colleghi.length===0){
+    lista.innerHTML='<span class="empty">Nessun collega aggiunto</span>';
+  } else {
+    lista.innerHTML=g.colleghi.map(function(nome,i){
+      var cls='collega-row';var badges='';
+      if(nome===resM.nome){cls+=' curr-m';badges+='<span class="badge bm">mat</span>';}
+      if(nome===resP.nome){cls+=' curr-p';badges+='<span class="badge bp">pom</span>';}
+      return '<div class="'+cls+'"><span class="c-idx">'+(i+1)+'.</span>'+
+        '<span class="c-nome">'+esc(nome)+'</span>'+
+        '<div class="c-badges">'+badges+'</div>'+
+        '<button class="btn-rm" type="button" data-rm="'+i+'">&#10005;</button></div>';
+    }).join('');
+  }
+  [['mattina',resM],['pomeriggio',resP]].forEach(function(pair){
+    var t=pair[0],res=pair[1];
+    var box=document.getElementById('winner-'+t);
+    var giroEl=document.getElementById('giro-'+t);
+    var skipEl=document.getElementById('skip-'+t);
+    var btn=document.getElementById('btn-'+t);
+    if(res.nome){
+      box.innerHTML='<div class="w-name">'+esc(res.nome)+'</div><div class="w-sub">offre il caffe\'</div>';
+      var pos=g.colleghi.indexOf(res.nome);
+      giroEl.textContent='posizione '+(pos+1)+'/'+g.colleghi.length;
+      skipEl.textContent=res.saltati.length>0?'Saltati: '+res.saltati.join(', '):'';
+    } else {
+      box.innerHTML='<span class="w-empty">nessun turno attivo</span>';
+      giroEl.textContent=g.colleghi.length>0?'premi il pulsante per iniziare':'';
+      skipEl.textContent='';
+    }
+    btn.disabled=g.colleghi.length===0;
+  });
+}
+
+function renderGruppi(){
+  var lista=document.getElementById('gruppi-list');
+  var nomi=Object.keys(allData.gruppi);
+  if(!nomi.length){lista.innerHTML='<span class="empty">Nessun gruppo</span>';return;}
+  lista.innerHTML=nomi.map(function(n){
+    var cls='gruppo-row'+(n===allData.gruppoAttivo?' selected':'');
+    return '<div class="'+cls+'" data-g="'+esc(n)+'"><span class="gr-nome">'+esc(n)+'</span>'+
+      '<span class="gr-count">'+allData.gruppi[n].colleghi.length+' colleghi</span></div>';
+  }).join('');
+}
+
+function aggiungi(){
+  var input=document.getElementById('input-nome');
+  var nome=input.value.trim();
+  var g=G();
+  if(!nome||g.colleghi.indexOf(nome)>=0){input.value='';return;}
+  g.colleghi.push(nome);
+  if(g.colleghi.length===1){g.indiceM=0;g.indiceP=0;}
+  input.value='';salva();render();
+}
+
+function rimuovi(i){
+  var g=G();
+  var nome=g.colleghi[i];
+  g.colleghi.splice(i,1);
+  ['indiceM','indiceP'].forEach(function(k){
+    if(g[k]<0)return;
+    var cur=g[k]%(g.colleghi.length+1);
+    if(cur>i)g[k]--;
+    else if(cur===i)g[k]=g.colleghi.length>0?Math.max(0,g[k]-1):-1;
+    if(g.colleghi.length===0)g[k]=-1;
+  });
+  ['mattina','pomeriggio'].forEach(function(t){
+    if(g.ultimoTurno[t]&&g.ultimoTurno[t].nome===nome)g.ultimoTurno[t]=null;
+  });
+  salva();render();
+}
+
+function avanza(t){
+  var g=G();
+  if(g.colleghi.length===0)return;
+  var idxKey=t==='mattina'?'indiceM':'indiceP';
+  if(g[idxKey]<0)g[idxKey]=0;
+  else g[idxKey]++;
+  var res=calcolaProssimo(t);
+  var nome=res.nome;
+  if(res.saltati.length>0){
+    var posNome=g.colleghi.indexOf(nome);
+    var n=g.colleghi.length;
+    var base=Math.floor(g[idxKey]/n)*n;
+    g[idxKey]=base+posNome;
+    if(g[idxKey]<base)g[idxKey]+=n;
+  }
+  g.ultimoTurno[t]={nome:nome,giorno:oggiStr()};
+  salva();render();
+}
+
+function aggiungiGruppo(){
+  var input=document.getElementById('input-gruppo');
+  var nome=input.value.trim();
+  if(!nome||allData.gruppi[nome]){input.value='';return;}
+  allData.gruppi[nome]=newGruppo();
+  allData.gruppoAttivo=nome;
+  input.value='';salva();renderGruppi();render();
+}
+
+function eliminaGruppo(){
+  var nomi=Object.keys(allData.gruppi);
+  if(nomi.length<=1){alert('Devi avere almeno un gruppo.');return;}
+  if(!confirm('Eliminare il gruppo "'+allData.gruppoAttivo+'" e tutti i suoi dati?'))return;
+  delete allData.gruppi[allData.gruppoAttivo];
+  allData.gruppoAttivo=Object.keys(allData.gruppi)[0];
+  salva();renderGruppi();render();
+}
+
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+document.getElementById('toggle-m').addEventListener('click',function(){
+  document.getElementById('panel-mattina').style.display='block';
+  document.getElementById('panel-pomeriggio').style.display='none';
+  this.className='toggle-btn active-m';
+  document.getElementById('toggle-p').className='toggle-btn';
+});
+document.getElementById('toggle-p').addEventListener('click',function(){
+  document.getElementById('panel-mattina').style.display='none';
+  document.getElementById('panel-pomeriggio').style.display='block';
+  this.className='toggle-btn active-p';
+  document.getElementById('toggle-m').className='toggle-btn';
+});
+document.getElementById('input-nome').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();aggiungi();}});
+document.getElementById('btn-add').addEventListener('click',aggiungi);
+document.getElementById('lista-colleghi').addEventListener('click',function(e){var b=e.target.closest('[data-rm]');if(b)rimuovi(parseInt(b.getAttribute('data-rm')));});
+document.getElementById('btn-mattina').addEventListener('click',function(){avanza('mattina');});
+document.getElementById('btn-pomeriggio').addEventListener('click',function(){avanza('pomeriggio');});
+document.getElementById('reset-mattina').addEventListener('click',function(){if(confirm('Azzerare la rotazione mattina?')){var g=G();g.indiceM=-1;g.ultimoTurno.mattina=null;salva();render();}});
+document.getElementById('reset-pomeriggio').addEventListener('click',function(){if(confirm('Azzerare la rotazione pomeriggio?')){var g=G();g.indiceP=-1;g.ultimoTurno.pomeriggio=null;salva();render();}});
+document.getElementById('btn-gruppi').addEventListener('click',function(){renderGruppi();showScreen('screen-gruppi');});
+document.getElementById('gruppo-attivo-btn').addEventListener('click',function(){renderGruppi();showScreen('screen-gruppi');});
+document.getElementById('btn-back').addEventListener('click',function(){showScreen('screen-main');});
+document.getElementById('gruppi-list').addEventListener('click',function(e){
+  var row=e.target.closest('[data-g]');
+  if(row){allData.gruppoAttivo=row.getAttribute('data-g');salva();renderGruppi();render();showScreen('screen-main');}
+});
+document.getElementById('input-gruppo').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();aggiungiGruppo();}});
+document.getElementById('btn-add-gruppo').addEventListener('click',aggiungiGruppo);
+document.getElementById('btn-elimina-gruppo').addEventListener('click',eliminaGruppo);
+
+render();
+</script>
+</body>
+</html>
