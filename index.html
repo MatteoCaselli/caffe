@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<meta name="theme-color" content="#181818">
+<meta name="theme-color" content="#1e1208">
 <title>Oggi chi paga?</title>
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
@@ -13,68 +13,90 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 html{font-size:16px;-webkit-text-size-adjust:100%;}
-body{background:#181818;color:#e8e4de;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;overflow-x:hidden;}
+body{background:#1e1208;color:#e8ddd0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;overflow-x:hidden;}
 .screen{display:none;width:100%;max-width:420px;margin:0 auto;padding:16px 14px 40px;}
 .screen.active{display:block;}
+
+/* HEADER */
 .header{display:flex;align-items:center;gap:12px;margin-bottom:24px;}
-.hicon{width:48px;height:48px;border-radius:14px;background:#2a1e0e;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;}
-.htitle{font-size:28px;font-weight:700;color:#f0ede8;flex:1;}
-.btn-icon{width:44px;height:44px;border-radius:12px;border:1.5px solid #2e2e2e;background:#242424;color:#888;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
-.btn-icon:active{background:#333;}
-.gruppo-attivo{display:flex;align-items:center;gap:8px;margin-bottom:20px;padding:10px 12px;background:#202020;border:1.5px solid #2a2a2a;border-radius:12px;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
-.gruppo-attivo:active{background:#282828;}
-.gruppo-nome{flex:1;font-size:15px;font-weight:500;color:#d8d4ce;}
-.toggle-mp{display:flex;margin-bottom:20px;background:#202020;border:1.5px solid #2a2a2a;border-radius:12px;padding:4px;}
-.toggle-btn{flex:1;padding:11px;border:none;border-radius:9px;background:transparent;color:#666;font-size:15px;font-weight:500;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
-.toggle-btn.active-m{background:#2e1e06;color:#d4922e;}
-.toggle-btn.active-p{background:#082e1e;color:#2daa7e;}
-.sec-label{font-size:12px;font-weight:500;color:#555;letter-spacing:.07em;text-transform:uppercase;margin-bottom:10px;}
+.hicon{width:48px;height:48px;border-radius:14px;background:#3a2210;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;}
+.htitle{font-size:28px;font-weight:700;color:#f0e6d8;flex:1;}
+.btn-icon{width:44px;height:44px;border-radius:12px;border:1.5px solid #3a2a1a;background:#2a1a0e;color:#9a8070;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+.btn-icon:active{background:#3a2a1a;}
+
+/* GRUPPO ATTIVO */
+.gruppo-attivo{display:flex;align-items:center;gap:8px;margin-bottom:20px;padding:10px 12px;background:#2a1a0e;border:1.5px solid #3a2a1a;border-radius:12px;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+.gruppo-attivo:active{background:#321e10;}
+.gruppo-nome{flex:1;font-size:15px;font-weight:500;color:#d4c4b0;}
+
+/* TOGGLE M/P */
+.toggle-mp{display:flex;margin-bottom:20px;background:#2a1a0e;border:1.5px solid #3a2a1a;border-radius:12px;padding:4px;}
+.toggle-btn{flex:1;padding:11px;border:none;border-radius:9px;background:transparent;color:#6a5a4a;font-size:15px;font-weight:500;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+.toggle-btn.active-m{background:#3d2510;color:#d4922e;}
+.toggle-btn.active-p{background:#1a2e20;color:#4daa7e;}
+
+/* FORM */
+.sec-label{font-size:12px;font-weight:500;color:#6a5a4a;letter-spacing:.07em;text-transform:uppercase;margin-bottom:10px;}
 .section{margin-bottom:24px;}
 .add-row{display:flex;gap:8px;width:100%;}
-.add-row input{flex:1;min-width:0;padding:14px 12px;border:1.5px solid #2e2e2e;border-radius:12px;background:#242424;color:#e8e4de;font-size:16px;-webkit-appearance:none;}
-.add-row input::placeholder{color:#444;}
-.add-row input:focus{outline:none;border-color:#555;}
-.btn-add{width:50px;height:50px;flex-shrink:0;border:1.5px solid #2e2e2e;border-radius:12px;background:#242424;color:#c8c4be;font-size:26px;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
-.btn-add:active{background:#333;}
-.hint{font-size:12px;color:#444;margin-top:7px;}
+.add-row input{flex:1;min-width:0;padding:14px 12px;border:1.5px solid #3a2a1a;border-radius:12px;background:#2a1a0e;color:#e8ddd0;font-size:16px;-webkit-appearance:none;}
+.add-row input::placeholder{color:#5a4a3a;}
+.add-row input:focus{outline:none;border-color:#6a4a2a;}
+.btn-add{width:50px;height:50px;flex-shrink:0;border:1.5px solid #3a2a1a;border-radius:12px;background:#2a1a0e;color:#b09080;font-size:26px;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+.btn-add:active{background:#3a2a1a;}
+.hint{font-size:12px;color:#5a4a3a;margin-top:7px;}
+
+/* TURNO SELECTOR (nella schermata gruppi) */
+.turno-sel{display:flex;gap:8px;margin-top:10px;}
+.turno-sel-btn{flex:1;padding:10px;border:1.5px solid #3a2a1a;border-radius:10px;background:#2a1a0e;color:#6a5a4a;font-size:14px;cursor:pointer;text-align:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:all .15s;}
+.turno-sel-btn.sel-m{border-color:#7a4a1a;background:#3d2510;color:#d4922e;}
+.turno-sel-btn.sel-p{border-color:#1a5a3a;background:#1a2e20;color:#4daa7e;}
+.turno-sel-btn.sel-both{border-color:#6a4a1a;background:#2e1e0a;color:#c4a060;}
+.turno-sel-label{font-size:11px;color:#5a4a3a;margin-top:8px;margin-bottom:4px;}
+
+/* LISTA COLLEGHI nel gruppo */
 .colleghi-list{display:flex;flex-direction:column;gap:7px;margin-top:10px;}
-.collega-row{display:flex;align-items:center;gap:10px;padding:14px 12px;background:#222;border:1.5px solid #2a2a2a;border-radius:12px;}
-.collega-row.curr-m{border-color:#6b4a12;background:#1e1608;}
-.collega-row.curr-p{border-color:#0f4a30;background:#0a201a;}
-.c-idx{font-size:13px;color:#444;min-width:20px;}
-.c-nome{flex:1;font-size:16px;color:#d8d4ce;}
+.collega-row{display:flex;align-items:center;gap:10px;padding:14px 12px;background:#251608;border:1.5px solid #3a2a1a;border-radius:12px;}
+.c-idx{font-size:13px;color:#5a4a3a;min-width:20px;}
+.c-nome{flex:1;font-size:16px;color:#d4c4b0;}
 .c-badges{display:flex;gap:5px;}
 .badge{font-size:12px;padding:3px 9px;border-radius:99px;font-weight:500;}
-.bm{background:#2e1e06;color:#d4922e;}
-.bp{background:#082e1e;color:#2daa7e;}
-.btn-rm{width:40px;height:40px;border-radius:50%;border:none;background:#2a2a2a;color:#666;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
-.btn-rm:active{background:#3d1515;color:#dd4444;}
-.empty{font-size:14px;color:#3a3a3a;font-style:italic;padding:4px 0;}
-.divider{height:1px;background:#222;margin:0 0 24px;}
-.turno-card{background:#202020;border:1.5px solid #2a2a2a;border-radius:16px;padding:16px;}
-.winner-box{background:#181818;border-radius:12px;padding:16px;text-align:center;min-height:80px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;}
-.w-name{font-size:22px;font-weight:500;color:#f0ede8;}
-.w-sub{font-size:14px;color:#666;}
-.w-empty{font-size:14px;color:#333;font-style:italic;}
-.giro-txt{font-size:12px;color:#444;text-align:center;margin-top:8px;min-height:16px;}
+.bm{background:#3d2510;color:#d4922e;}
+.bp{background:#1a2e20;color:#4daa7e;}
+.btn-rm{width:40px;height:40px;border-radius:50%;border:none;background:#3a2a1a;color:#7a6a5a;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+.btn-rm:active{background:#5a1a1a;color:#dd6644;}
+.empty{font-size:14px;color:#4a3a2a;font-style:italic;padding:4px 0;}
+.divider{height:1px;background:#2e1e0e;margin:0 0 24px;}
+
+/* TURNO CARD */
+.turno-card{background:#251608;border:1.5px solid #3a2a1a;border-radius:16px;padding:16px;}
+.winner-box{background:#1e1208;border-radius:12px;padding:16px;text-align:center;min-height:80px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;}
+.w-name{font-size:22px;font-weight:500;color:#f0e6d8;}
+.w-sub{font-size:14px;color:#7a6a5a;}
+.w-empty{font-size:14px;color:#4a3a2a;font-style:italic;}
+.giro-txt{font-size:12px;color:#5a4a3a;text-align:center;margin-top:8px;min-height:16px;}
 .skip-info{font-size:12px;color:#c87d30;margin-top:6px;text-align:center;min-height:16px;font-style:italic;}
-.btn-avanza{width:100%;margin-top:12px;padding:16px;border:1.5px solid #333;border-radius:12px;background:#282828;color:#c8c4be;font-size:16px;cursor:pointer;-webkit-tap-highlight-color:transparent;-webkit-appearance:none;touch-action:manipulation;}
-.btn-avanza:active{background:#333;}
+.btn-avanza{width:100%;margin-top:12px;padding:16px;border:1.5px solid #4a3020;border-radius:12px;background:#321e10;color:#c4b0a0;font-size:16px;cursor:pointer;-webkit-tap-highlight-color:transparent;-webkit-appearance:none;touch-action:manipulation;}
+.btn-avanza:active{background:#3a2a1a;}
 .btn-avanza:disabled{opacity:.25;cursor:default;}
-.btn-link{font-size:13px;color:#444;background:none;border:none;cursor:pointer;text-decoration:underline;margin-top:10px;display:block;padding:8px 0;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
-.btn-link:active{color:#888;}
-.back-btn{display:flex;align-items:center;gap:6px;font-size:14px;color:#666;background:none;border:none;cursor:pointer;padding:0;margin-bottom:20px;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
-.back-btn:active{color:#888;}
+.btn-link{font-size:13px;color:#5a4a3a;background:none;border:none;cursor:pointer;text-decoration:underline;margin-top:10px;display:block;padding:8px 0;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+.btn-link:active{color:#9a8070;}
+
+/* GRUPPI SCREEN */
+.back-btn{display:flex;align-items:center;gap:6px;font-size:14px;color:#7a6a5a;background:none;border:none;cursor:pointer;padding:0;margin-bottom:20px;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+.back-btn:active{color:#b09080;}
 .gruppi-list{display:flex;flex-direction:column;gap:8px;}
-.gruppo-row{display:flex;align-items:center;gap:10px;padding:16px 14px;background:#222;border:1.5px solid #2a2a2a;border-radius:12px;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
-.gruppo-row:active{background:#2a2a2a;}
-.gruppo-row.selected{border-color:#6b4a12;background:#1e1608;}
-.gr-nome{flex:1;font-size:17px;color:#d8d4ce;}
-.gr-count{font-size:12px;color:#555;}
+.gruppo-row{display:flex;align-items:center;gap:10px;padding:14px;background:#251608;border:1.5px solid #3a2a1a;border-radius:12px;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+.gruppo-row:active{background:#3a2a1a;}
+.gruppo-row.selected{border-color:#7a4a1a;background:#321e10;}
+.gr-nome{flex:1;font-size:17px;color:#d4c4b0;}
+.gr-count{font-size:12px;color:#6a5a4a;}
+.gr-arrow{font-size:12px;color:#5a4a3a;}
 </style>
 </head>
 <body>
 
+<!-- SCREEN PRINCIPALE -->
 <div class="screen active" id="screen-main">
   <div class="header">
     <div class="hicon">&#x2615;</div>
@@ -83,22 +105,10 @@ body{background:#181818;color:#e8e4de;font-family:-apple-system,BlinkMacSystemFo
   </div>
 
   <div class="gruppo-attivo" id="gruppo-attivo-btn">
-    <span style="font-size:13px;color:#555;">Gruppo:</span>
+    <span style="font-size:13px;color:#6a5a4a;">Gruppo:</span>
     <span class="gruppo-nome" id="gruppo-nome-label">—</span>
-    <span style="font-size:12px;color:#555;">&#9660;</span>
+    <span style="font-size:12px;color:#5a4a3a;">&#9660;</span>
   </div>
-
-  <div class="section">
-    <div class="sec-label">Colleghi</div>
-    <div class="add-row">
-      <input type="text" id="input-nome" placeholder="Nome collega..." maxlength="30" autocomplete="off" autocorrect="off" autocapitalize="words"/>
-      <button class="btn-add" id="btn-add" type="button">+</button>
-    </div>
-    <div class="hint">Scrivi il nome e premi Invio oppure +</div>
-    <div class="colleghi-list" id="lista-colleghi"><span class="empty">Nessun collega aggiunto</span></div>
-  </div>
-
-  <div class="divider"></div>
 
   <div class="section">
     <div class="sec-label">Turni</div>
@@ -129,29 +139,64 @@ body{background:#181818;color:#e8e4de;font-family:-apple-system,BlinkMacSystemFo
   </div>
 </div>
 
+<!-- SCREEN GRUPPI -->
 <div class="screen" id="screen-gruppi">
   <div style="padding:16px 14px 40px;max-width:420px;margin:0 auto;">
     <button class="back-btn" id="btn-back">&#8592; Torna all'app</button>
     <div class="header" style="margin-bottom:20px;"><div class="htitle">Gruppi</div></div>
-    <div class="sec-label">Seleziona o crea un gruppo</div>
+
+    <!-- Lista gruppi -->
+    <div class="sec-label">I tuoi gruppi</div>
     <div class="gruppi-list" id="gruppi-list"></div>
-    <div class="add-row" style="margin-top:16px;">
-      <input type="text" id="input-gruppo" placeholder="Nome nuovo gruppo..." maxlength="30" autocomplete="off" autocorrect="off" autocapitalize="words"/>
-      <button class="btn-add" id="btn-add-gruppo" type="button">+</button>
-    </div>
+
+    <!-- Nuovo gruppo -->
     <div style="margin-top:16px;">
-      <button class="btn-link" id="btn-elimina-gruppo" style="color:#663333;">elimina gruppo selezionato</button>
+      <div class="sec-label">Nuovo gruppo</div>
+      <div class="add-row">
+        <input type="text" id="input-gruppo" placeholder="Nome gruppo..." maxlength="30" autocomplete="off" autocorrect="off" autocapitalize="words"/>
+        <button class="btn-add" id="btn-add-gruppo" type="button">+</button>
+      </div>
+    </div>
+
+    <div class="divider" style="margin-top:24px;"></div>
+
+    <!-- Membri del gruppo selezionato -->
+    <div id="sezione-membri">
+      <div class="sec-label" id="label-membri">Membri</div>
+
+      <div class="colleghi-list" id="lista-colleghi"><span class="empty">Nessun membro aggiunto</span></div>
+
+      <div style="margin-top:14px;">
+        <div class="add-row">
+          <input type="text" id="input-nome" placeholder="Nome membro..." maxlength="30" autocomplete="off" autocorrect="off" autocapitalize="words"/>
+        </div>
+        <div class="turno-sel-label">Partecipa a:</div>
+        <div class="turno-sel">
+          <button class="turno-sel-btn sel-both" id="sel-entrambi" type="button">Mattina e pomeriggio</button>
+        </div>
+        <div class="turno-sel" style="margin-top:8px;">
+          <button class="turno-sel-btn" id="sel-mattina" type="button">Solo mattina</button>
+          <button class="turno-sel-btn" id="sel-pomeriggio" type="button">Solo pomeriggio</button>
+        </div>
+        <div class="hint" style="margin-top:8px;">Seleziona la partecipazione e premi il pulsante, oppure Invio per "entrambi"</div>
+      </div>
+
+      <div style="margin-top:16px;display:flex;justify-content:flex-end;">
+        <button class="btn-link" id="btn-elimina-gruppo" style="color:#7a3a2a;">elimina gruppo selezionato</button>
+      </div>
     </div>
   </div>
 </div>
 
 <script>
-var DB_KEY='caffe_v5';
+var DB_KEY='caffe_v6';
 var allData=null;
 try{allData=JSON.parse(localStorage.getItem(DB_KEY)||'null');}catch(e){}
 if(!allData) allData={gruppoAttivo:'Ufficio',gruppi:{'Ufficio':newGruppo()}};
 
 function newGruppo(){
+  // colleghi: [{nome, turni: 'M'|'P'|'MP'}]
+  // indiceM, indiceP: indici separati sulla lista filtrata
   return {colleghi:[],indiceM:-1,indiceP:-1,ultimoTurno:{mattina:null,pomeriggio:null}};
 }
 function G(){return allData.gruppi[allData.gruppoAttivo];}
@@ -160,10 +205,19 @@ function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').repl
 function oggiStr(){var d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();}
 function ieriStr(){var d=new Date();d.setDate(d.getDate()-1);return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();}
 
-function calcolaProssimo(t){
+// Restituisce la lista filtrata per turno t
+function listaPerTurno(t){
   var g=G();
-  var n=g.colleghi.length;
+  return g.colleghi.filter(function(c){
+    return c.turni==='MP'||(t==='mattina'&&c.turni==='M')||(t==='pomeriggio'&&c.turni==='P');
+  });
+}
+
+function calcolaProssimo(t){
+  var lista=listaPerTurno(t);
+  var n=lista.length;
   if(n===0) return {nome:null,saltati:[]};
+  var g=G();
   var idx=t==='mattina'?g.indiceM:g.indiceP;
   if(idx<0) return {nome:null,saltati:[]};
   var altroT=t==='mattina'?'pomeriggio':'mattina';
@@ -174,11 +228,11 @@ function calcolaProssimo(t){
   if(g.ultimoTurno[t]&&g.ultimoTurno[t].giorno===ieri) bloccati.push(g.ultimoTurno[t].nome);
   var saltati=[];
   for(var i=0;i<n;i++){
-    var candidato=g.colleghi[(idx+i)%n];
+    var candidato=lista[(idx+i)%n].nome;
     if(bloccati.indexOf(candidato)<0) return {nome:candidato,saltati:saltati};
     saltati.push(candidato);
   }
-  return {nome:g.colleghi[idx%n],saltati:[]};
+  return {nome:lista[idx%n].nome,saltati:[]};
 }
 
 function render(){
@@ -186,92 +240,117 @@ function render(){
   document.getElementById('gruppo-nome-label').textContent=allData.gruppoAttivo;
   var resM=calcolaProssimo('mattina');
   var resP=calcolaProssimo('pomeriggio');
-  var lista=document.getElementById('lista-colleghi');
-  if(g.colleghi.length===0){
-    lista.innerHTML='<span class="empty">Nessun collega aggiunto</span>';
-  } else {
-    lista.innerHTML=g.colleghi.map(function(nome,i){
-      var cls='collega-row';var badges='';
-      if(nome===resM.nome){cls+=' curr-m';badges+='<span class="badge bm">mat</span>';}
-      if(nome===resP.nome){cls+=' curr-p';badges+='<span class="badge bp">pom</span>';}
-      return '<div class="'+cls+'"><span class="c-idx">'+(i+1)+'.</span>'+
-        '<span class="c-nome">'+esc(nome)+'</span>'+
-        '<div class="c-badges">'+badges+'</div>'+
-        '<button class="btn-rm" type="button" data-rm="'+i+'">&#10005;</button></div>';
-    }).join('');
-  }
+
   [['mattina',resM],['pomeriggio',resP]].forEach(function(pair){
     var t=pair[0],res=pair[1];
     var box=document.getElementById('winner-'+t);
     var giroEl=document.getElementById('giro-'+t);
     var skipEl=document.getElementById('skip-'+t);
     var btn=document.getElementById('btn-'+t);
+    var lista=listaPerTurno(t);
     if(res.nome){
       box.innerHTML='<div class="w-name">'+esc(res.nome)+'</div><div class="w-sub">offre il caffe\'</div>';
-      var pos=g.colleghi.indexOf(res.nome);
-      giroEl.textContent='posizione '+(pos+1)+'/'+g.colleghi.length;
+      var pos=lista.findIndex(function(c){return c.nome===res.nome;});
+      giroEl.textContent='posizione '+(pos+1)+'/'+lista.length;
       skipEl.textContent=res.saltati.length>0?'Saltati: '+res.saltati.join(', '):'';
     } else {
       box.innerHTML='<span class="w-empty">nessun turno attivo</span>';
-      giroEl.textContent=g.colleghi.length>0?'premi il pulsante per iniziare':'';
+      giroEl.textContent=lista.length>0?'premi il pulsante per iniziare':'Nessun membro in questo turno';
       skipEl.textContent='';
     }
-    btn.disabled=g.colleghi.length===0;
+    btn.disabled=lista.length===0;
   });
 }
 
 function renderGruppi(){
   var lista=document.getElementById('gruppi-list');
   var nomi=Object.keys(allData.gruppi);
-  if(!nomi.length){lista.innerHTML='<span class="empty">Nessun gruppo</span>';return;}
   lista.innerHTML=nomi.map(function(n){
+    var g=allData.gruppi[n];
     var cls='gruppo-row'+(n===allData.gruppoAttivo?' selected':'');
-    return '<div class="'+cls+'" data-g="'+esc(n)+'"><span class="gr-nome">'+esc(n)+'</span>'+
-      '<span class="gr-count">'+allData.gruppi[n].colleghi.length+' colleghi</span></div>';
+    return '<div class="'+cls+'" data-g="'+esc(n)+'">'+
+      '<span class="gr-nome">'+esc(n)+'</span>'+
+      '<span class="gr-count">'+g.colleghi.length+' membri</span>'+
+      '<span class="gr-arrow">&#8250;</span></div>';
   }).join('');
+  renderMembri();
 }
 
-function aggiungi(){
+function renderMembri(){
+  var g=G();
+  document.getElementById('label-membri').textContent='Membri — '+allData.gruppoAttivo;
+  var lista=document.getElementById('lista-colleghi');
+  if(g.colleghi.length===0){
+    lista.innerHTML='<span class="empty">Nessun membro aggiunto</span>';
+  } else {
+    lista.innerHTML=g.colleghi.map(function(c,i){
+      var badges='';
+      if(c.turni==='MP'||c.turni==='M') badges+='<span class="badge bm">mat</span>';
+      if(c.turni==='MP'||c.turni==='P') badges+='<span class="badge bp">pom</span>';
+      return '<div class="collega-row">'+
+        '<span class="c-idx">'+(i+1)+'.</span>'+
+        '<span class="c-nome">'+esc(c.nome)+'</span>'+
+        '<div class="c-badges">'+badges+'</div>'+
+        '<button class="btn-rm" type="button" data-rm="'+i+'">&#10005;</button></div>';
+    }).join('');
+  }
+}
+
+// Stato selezione turno nuovo membro
+var selTurno='MP';
+function aggiornaSelBtn(){
+  document.getElementById('sel-entrambi').className='turno-sel-btn'+(selTurno==='MP'?' sel-both':'');
+  document.getElementById('sel-mattina').className='turno-sel-btn'+(selTurno==='M'?' sel-m':'');
+  document.getElementById('sel-pomeriggio').className='turno-sel-btn'+(selTurno==='P'?' sel-p':'');
+}
+
+document.getElementById('sel-entrambi').addEventListener('click',function(){selTurno='MP';aggiornaSelBtn();});
+document.getElementById('sel-mattina').addEventListener('click',function(){selTurno='M';aggiornaSelBtn();});
+document.getElementById('sel-pomeriggio').addEventListener('click',function(){selTurno='P';aggiornaSelBtn();});
+
+function aggiungiMembro(turni){
   var input=document.getElementById('input-nome');
   var nome=input.value.trim();
   var g=G();
-  if(!nome||g.colleghi.indexOf(nome)>=0){input.value='';return;}
-  g.colleghi.push(nome);
-  if(g.colleghi.length===1){g.indiceM=0;g.indiceP=0;}
-  input.value='';salva();render();
+  if(!nome) return;
+  if(g.colleghi.find(function(c){return c.nome===nome;})){input.value='';return;}
+  g.colleghi.push({nome:nome,turni:turni||selTurno});
+  // inizializza indici se primo membro
+  if(listaPerTurno('mattina').length===1&&g.indiceM<0) g.indiceM=0;
+  if(listaPerTurno('pomeriggio').length===1&&g.indiceP<0) g.indiceP=0;
+  input.value='';salva();renderMembri();render();
 }
 
-function rimuovi(i){
+function rimuoviMembro(i){
   var g=G();
-  var nome=g.colleghi[i];
+  var nome=g.colleghi[i].nome;
   g.colleghi.splice(i,1);
-  ['indiceM','indiceP'].forEach(function(k){
-    if(g[k]<0)return;
-    var cur=g[k]%(g.colleghi.length+1);
-    if(cur>i)g[k]--;
-    else if(cur===i)g[k]=g.colleghi.length>0?Math.max(0,g[k]-1):-1;
-    if(g.colleghi.length===0)g[k]=-1;
-  });
+  // ricalcola indici in modo sicuro
   ['mattina','pomeriggio'].forEach(function(t){
-    if(g.ultimoTurno[t]&&g.ultimoTurno[t].nome===nome)g.ultimoTurno[t]=null;
+    var idxKey=t==='mattina'?'indiceM':'indiceP';
+    var lista=listaPerTurno(t);
+    if(lista.length===0){g[idxKey]=-1;}
+    else if(g[idxKey]>=lista.length){g[idxKey]=0;}
+    if(g.ultimoTurno[t]&&g.ultimoTurno[t].nome===nome) g.ultimoTurno[t]=null;
   });
-  salva();render();
+  salva();renderMembri();render();
 }
 
 function avanza(t){
+  var lista=listaPerTurno(t);
+  if(lista.length===0) return;
   var g=G();
-  if(g.colleghi.length===0)return;
   var idxKey=t==='mattina'?'indiceM':'indiceP';
-  if(g[idxKey]<0)g[idxKey]=0;
+  if(g[idxKey]<0) g[idxKey]=0;
   else g[idxKey]++;
   var res=calcolaProssimo(t);
   var nome=res.nome;
   if(res.saltati.length>0){
-    var posNome=g.colleghi.indexOf(nome);
-    var n=g.colleghi.length;
+    var posNome=lista.findIndex(function(c){return c.nome===nome;});
+    var n=lista.length;
     var base=Math.floor(g[idxKey]/n)*n;
     g[idxKey]=base+posNome;
-    if(g[idxKey]<base)g[idxKey]+=n;
+    if(g[idxKey]<base) g[idxKey]+=n;
   }
   g.ultimoTurno[t]={nome:nome,giorno:oggiStr()};
   salva();render();
@@ -289,7 +368,7 @@ function aggiungiGruppo(){
 function eliminaGruppo(){
   var nomi=Object.keys(allData.gruppi);
   if(nomi.length<=1){alert('Devi avere almeno un gruppo.');return;}
-  if(!confirm('Eliminare il gruppo "'+allData.gruppoAttivo+'" e tutti i suoi dati?'))return;
+  if(!confirm('Eliminare il gruppo "'+allData.gruppoAttivo+'"?')) return;
   delete allData.gruppi[allData.gruppoAttivo];
   allData.gruppoAttivo=Object.keys(allData.gruppi)[0];
   salva();renderGruppi();render();
@@ -301,6 +380,7 @@ function showScreen(id){
   window.scrollTo(0,0);
 }
 
+// Toggle M/P
 document.getElementById('toggle-m').addEventListener('click',function(){
   document.getElementById('panel-mattina').style.display='block';
   document.getElementById('panel-pomeriggio').style.display='none';
@@ -313,20 +393,37 @@ document.getElementById('toggle-p').addEventListener('click',function(){
   this.className='toggle-btn active-p';
   document.getElementById('toggle-m').className='toggle-btn';
 });
-document.getElementById('input-nome').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();aggiungi();}});
-document.getElementById('btn-add').addEventListener('click',aggiungi);
-document.getElementById('lista-colleghi').addEventListener('click',function(e){var b=e.target.closest('[data-rm]');if(b)rimuovi(parseInt(b.getAttribute('data-rm')));});
+
+// Avanza
 document.getElementById('btn-mattina').addEventListener('click',function(){avanza('mattina');});
 document.getElementById('btn-pomeriggio').addEventListener('click',function(){avanza('pomeriggio');});
-document.getElementById('reset-mattina').addEventListener('click',function(){if(confirm('Azzerare la rotazione mattina?')){var g=G();g.indiceM=-1;g.ultimoTurno.mattina=null;salva();render();}});
-document.getElementById('reset-pomeriggio').addEventListener('click',function(){if(confirm('Azzerare la rotazione pomeriggio?')){var g=G();g.indiceP=-1;g.ultimoTurno.pomeriggio=null;salva();render();}});
+
+// Reset
+document.getElementById('reset-mattina').addEventListener('click',function(){
+  if(confirm('Azzerare la rotazione mattina?')){var g=G();g.indiceM=listaPerTurno('mattina').length>0?0:-1;g.ultimoTurno.mattina=null;salva();render();}
+});
+document.getElementById('reset-pomeriggio').addEventListener('click',function(){
+  if(confirm('Azzerare la rotazione pomeriggio?')){var g=G();g.indiceP=listaPerTurno('pomeriggio').length>0?0:-1;g.ultimoTurno.pomeriggio=null;salva();render();}
+});
+
+// Navigazione
 document.getElementById('btn-gruppi').addEventListener('click',function(){renderGruppi();showScreen('screen-gruppi');});
 document.getElementById('gruppo-attivo-btn').addEventListener('click',function(){renderGruppi();showScreen('screen-gruppi');});
 document.getElementById('btn-back').addEventListener('click',function(){showScreen('screen-main');});
+
+// Lista gruppi — click seleziona
 document.getElementById('gruppi-list').addEventListener('click',function(e){
   var row=e.target.closest('[data-g]');
-  if(row){allData.gruppoAttivo=row.getAttribute('data-g');salva();renderGruppi();render();showScreen('screen-main');}
+  if(row){allData.gruppoAttivo=row.getAttribute('data-g');salva();renderGruppi();render();}
 });
+
+// Aggiungi membro
+document.getElementById('input-nome').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();aggiungiMembro();}});
+document.getElementById('lista-colleghi').addEventListener('click',function(e){
+  var b=e.target.closest('[data-rm]');if(b)rimuoviMembro(parseInt(b.getAttribute('data-rm')));
+});
+
+// Aggiungi gruppo
 document.getElementById('input-gruppo').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();aggiungiGruppo();}});
 document.getElementById('btn-add-gruppo').addEventListener('click',aggiungiGruppo);
 document.getElementById('btn-elimina-gruppo').addEventListener('click',eliminaGruppo);
