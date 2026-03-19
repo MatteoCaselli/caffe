@@ -19,7 +19,7 @@ body{background:#1e1208;color:#e8ddd0;font-family:-apple-system,BlinkMacSystemFo
 
 .header{display:flex;align-items:center;gap:14px;margin-bottom:20px;padding:14px 16px;background:#3d2410;border:1.5px solid #6a4828;border-radius:16px;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
 .header:active{background:#5a3820;}
-.hicon{width:52px;height:52px;border-radius:14px;background:#5a3820;display:flex;align-items:center;justify-content:center;font-size:30px;flex-shrink:0;}
+.hicon{width:52px;height:52px;display:flex;align-items:center;justify-content:center;font-size:38px;flex-shrink:0;}
 .htitle{font-size:26px;font-weight:700;color:#f0e6d8;flex:1;}
 .hgroup-name{font-size:13px;color:#8a7060;margin-top:2px;}
 
@@ -170,50 +170,46 @@ body{background:#1e1208;color:#e8ddd0;font-family:-apple-system,BlinkMacSystemFo
 </div>
 
 <script>
-var DB_KEY='caffe_v6';
 var FIREBASE_URL='https://oggichipaga-default-rtdb.europe-west1.firebasedatabase.app/caffe';
 var allData=null;
 var localWrite=false;
 
 function newGruppo(){
-  return {colleghi:[],indiceM:-1,indiceP:-1,ultimoTurno:{mattina:null,pomeriggio:null},penultimoTurno:{mattina:null,pomeriggio:null}};
+  return {colleghi:[],indiceM:-1,indiceP:-1,
+    ultimoTurno:{mattina:null,pomeriggio:null},
+    penultimoTurno:{mattina:null,pomeriggio:null}};
 }
 function G(){return allData.gruppi[allData.gruppoAttivo];}
+
 function salva(){
   localWrite=true;
-  fetch(FIREBASE_URL+'.json',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(allData)})
-    .catch(function(){});
-  try{localStorage.setItem(DB_KEY,JSON.stringify(allData));}catch(e){}
+  fetch(FIREBASE_URL+'.json',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(allData)}).catch(function(){});
+  try{localStorage.setItem('caffe_v6',JSON.stringify(allData));}catch(e){}
   setTimeout(function(){localWrite=false;},1000);
 }
+
 function carica(cb){
   fetch(FIREBASE_URL+'.json')
     .then(function(r){return r.json();})
     .then(function(data){
-      if(data&&data.gruppi){
-        allData=data;
-      } else {
-        allData={gruppoAttivo:'Ufficio',gruppi:{'Ufficio':newGruppo()}};
-        salva();
-      }
+      if(data&&data.gruppi){allData=data;}
+      else{allData={gruppoAttivo:'Ufficio',gruppi:{'Ufficio':newGruppo()}};salva();}
       if(cb) cb();
     })
     .catch(function(){
       var local=null;
-      try{local=JSON.parse(localStorage.getItem(DB_KEY)||'null');}catch(e){}
+      try{local=JSON.parse(localStorage.getItem('caffe_v6')||'null');}catch(e){}
       allData=local||{gruppoAttivo:'Ufficio',gruppi:{'Ufficio':newGruppo()}};
       if(cb) cb();
     });
 }
 
-// Polling ogni 5 secondi
 setInterval(function(){
   if(localWrite) return;
   fetch(FIREBASE_URL+'.json')
     .then(function(r){return r.json();})
-    .then(function(data){
-      if(data&&data.gruppi){allData=data;render();}
-    }).catch(function(){});
+    .then(function(data){if(data&&data.gruppi){allData=data;render();}})
+    .catch(function(){});
 },5000);
 
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
@@ -221,8 +217,7 @@ function oggiStr(){var d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+
 function ieriStr(){var d=new Date();d.setDate(d.getDate()-1);return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();}
 
 function listaPerTurno(t){
-  var g=G();
-  return g.colleghi.filter(function(c){
+  return G().colleghi.filter(function(c){
     return c.turni==='MP'||(t==='mattina'&&c.turni==='M')||(t==='pomeriggio'&&c.turni==='P');
   });
 }
@@ -235,7 +230,7 @@ function calcolaProssimo(t){
   var idx=t==='mattina'?g.indiceM:g.indiceP;
   if(idx<0) return {nome:null,saltati:[]};
   var altroT=t==='mattina'?'pomeriggio':'mattina';
-  var oggi=oggiStr();var ieri=ieriStr();
+  var oggi=oggiStr(); var ieri=ieriStr();
   var bloccati=[];
   if(g.ultimoTurno[altroT]&&g.ultimoTurno[altroT].giorno===oggi) bloccati.push(g.ultimoTurno[altroT].nome);
   if(g.ultimoTurno[t]&&g.ultimoTurno[t].giorno===ieri) bloccati.push(g.ultimoTurno[t].nome);
@@ -263,9 +258,8 @@ function render(){
     var lista=listaPerTurno(t);
     if(res.nome){
       var prev='';
-      if(g.penultimoTurno&&g.penultimoTurno[t]&&g.penultimoTurno[t].nome){
+      if(g.penultimoTurno&&g.penultimoTurno[t]&&g.penultimoTurno[t].nome)
         prev='<div class="w-prev">Ultimo pagante: '+esc(g.penultimoTurno[t].nome)+'</div>';
-      }
       box.innerHTML='<div class="w-name">'+esc(res.nome)+'</div><div class="w-sub">offre il caffe'</div>'+prev;
       var pos=lista.findIndex(function(c){return c.nome===res.nome;});
       giroEl.textContent='posizione '+(pos+1)+'/'+lista.length;
@@ -280,9 +274,8 @@ function render(){
 }
 
 function renderGruppi(){
-  var lista=document.getElementById('gruppi-list');
   var nomi=Object.keys(allData.gruppi);
-  lista.innerHTML=nomi.map(function(n){
+  document.getElementById('gruppi-list').innerHTML=nomi.map(function(n){
     var g=allData.gruppi[n];
     var cls='gruppo-row'+(n===allData.gruppoAttivo?' selected':'');
     var delBtn=nomi.length>1?'<button class="btn-del-gruppo" data-del="'+esc(n)+'" style="background:none;border:none;color:#7a3a2a;font-size:13px;text-decoration:underline;cursor:pointer;padding:0 0 0 8px;-webkit-tap-highlight-color:transparent;">elimina</button>':'';
@@ -299,20 +292,17 @@ function renderMembri(){
   var g=G();
   document.getElementById('label-membri').textContent='Membri — '+allData.gruppoAttivo;
   var lista=document.getElementById('lista-colleghi');
-  if(g.colleghi.length===0){
-    lista.innerHTML='<span class="empty">Nessun membro aggiunto</span>';
-  } else {
-    lista.innerHTML=g.colleghi.map(function(c,i){
-      var badges='';
-      if(c.turni==='MP'||c.turni==='M') badges+='<span class="badge bm">mat</span>';
-      if(c.turni==='MP'||c.turni==='P') badges+='<span class="badge bp">pom</span>';
-      return '<div class="collega-row">'+
-        '<span class="c-idx">'+(i+1)+'.</span>'+
-        '<span class="c-nome">'+esc(c.nome)+'</span>'+
-        '<div class="c-badges">'+badges+'</div>'+
-        '<button class="btn-rm" type="button" data-rm="'+i+'">&#10005;</button></div>';
-    }).join('');
-  }
+  if(!g.colleghi.length){lista.innerHTML='<span class="empty">Nessun membro aggiunto</span>';return;}
+  lista.innerHTML=g.colleghi.map(function(c,i){
+    var badges='';
+    if(c.turni==='MP'||c.turni==='M') badges+='<span class="badge bm">mat</span>';
+    if(c.turni==='MP'||c.turni==='P') badges+='<span class="badge bp">pom</span>';
+    return '<div class="collega-row">'+
+      '<span class="c-idx">'+(i+1)+'.</span>'+
+      '<span class="c-nome">'+esc(c.nome)+'</span>'+
+      '<div class="c-badges">'+badges+'</div>'+
+      '<button class="btn-rm" type="button" data-rm="'+i+'">&#10005;</button></div>';
+  }).join('');
 }
 
 var selTurno='MP';
@@ -321,16 +311,12 @@ function aggiornaSelBtn(){
   document.getElementById('sel-mattina').className='turno-sel-btn'+(selTurno==='M'?' sel-m':'');
   document.getElementById('sel-pomeriggio').className='turno-sel-btn'+(selTurno==='P'?' sel-p':'');
 }
-document.getElementById('sel-entrambi').addEventListener('click',function(){selTurno='MP';aggiornaSelBtn();});
-document.getElementById('sel-mattina').addEventListener('click',function(){selTurno='M';aggiornaSelBtn();});
-document.getElementById('sel-pomeriggio').addEventListener('click',function(){selTurno='P';aggiornaSelBtn();});
 
 function aggiungiMembro(){
   var input=document.getElementById('input-nome');
   var nome=input.value.trim();
   var g=G();
-  if(!nome) return;
-  if(g.colleghi.find(function(c){return c.nome===nome;})){input.value='';return;}
+  if(!nome||g.colleghi.find(function(c){return c.nome===nome;})){input.value='';return;}
   g.colleghi.push({nome:nome,turni:selTurno});
   if(listaPerTurno('mattina').length===1&&g.indiceM<0) g.indiceM=0;
   if(listaPerTurno('pomeriggio').length===1&&g.indiceP<0) g.indiceP=0;
@@ -344,7 +330,7 @@ function rimuoviMembro(i){
   ['mattina','pomeriggio'].forEach(function(t){
     var idxKey=t==='mattina'?'indiceM':'indiceP';
     var lista=listaPerTurno(t);
-    if(lista.length===0){g[idxKey]=-1;}
+    if(!lista.length){g[idxKey]=-1;}
     else if(g[idxKey]>=lista.length){g[idxKey]=0;}
     if(g.ultimoTurno[t]&&g.ultimoTurno[t].nome===nome) g.ultimoTurno[t]=null;
     if(g.penultimoTurno&&g.penultimoTurno[t]&&g.penultimoTurno[t].nome===nome) g.penultimoTurno[t]=null;
@@ -354,11 +340,10 @@ function rimuoviMembro(i){
 
 function avanza(t){
   var lista=listaPerTurno(t);
-  if(lista.length===0) return;
+  if(!lista.length) return;
   var g=G();
   var idxKey=t==='mattina'?'indiceM':'indiceP';
-  if(g[idxKey]<0) g[idxKey]=0;
-  else g[idxKey]++;
+  if(g[idxKey]<0) g[idxKey]=0; else g[idxKey]++;
   var res=calcolaProssimo(t);
   var nome=res.nome;
   if(res.saltati.length>0){
@@ -389,6 +374,7 @@ function showScreen(id){
   window.scrollTo(0,0);
 }
 
+// ── EVENT LISTENERS ──
 document.getElementById('toggle-m').addEventListener('click',function(){
   document.getElementById('panel-mattina').style.display='block';
   document.getElementById('panel-pomeriggio').style.display='none';
@@ -426,6 +412,9 @@ document.getElementById('gruppi-list').addEventListener('click',function(e){
   var row=e.target.closest('[data-g]');
   if(row){allData.gruppoAttivo=row.getAttribute('data-g');salva();renderGruppi();render();}
 });
+document.getElementById('sel-entrambi').addEventListener('click',function(){selTurno='MP';aggiornaSelBtn();});
+document.getElementById('sel-mattina').addEventListener('click',function(){selTurno='M';aggiornaSelBtn();});
+document.getElementById('sel-pomeriggio').addEventListener('click',function(){selTurno='P';aggiornaSelBtn();});
 document.getElementById('input-nome').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();aggiungiMembro();}});
 document.getElementById('btn-add-membro').addEventListener('click',aggiungiMembro);
 document.getElementById('lista-colleghi').addEventListener('click',function(e){
