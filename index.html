@@ -16,86 +16,72 @@ html{font-size:16px;-webkit-text-size-adjust:100%;}
 body{background:#1e1208;color:#e8ddd0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;overflow-x:hidden;}
 .screen{display:none;width:100%;max-width:420px;margin:0 auto;padding:16px 14px 40px;}
 .screen.active{display:block;}
-
 .header{display:flex;align-items:center;gap:14px;margin-bottom:20px;padding:14px 16px;background:#3d2410;border:1.5px solid #6a4828;border-radius:16px;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
-.header:active{background:#5a3820;}
+.header:active{background:#4a2e18;}
 .hicon{width:52px;height:52px;display:flex;align-items:center;justify-content:center;font-size:38px;flex-shrink:0;}
 .htitle{font-size:26px;font-weight:700;color:#f0e6d8;flex:1;}
 .hgroup-name{font-size:13px;color:#8a7060;margin-top:2px;}
-
 .toggle-mp{display:flex;margin-bottom:20px;background:#3d2410;border:1.5px solid #6a4828;border-radius:12px;padding:4px;}
 .toggle-btn{flex:1;padding:11px;border:none;border-radius:9px;background:transparent;color:#6a5a4a;font-size:15px;font-weight:500;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
-.toggle-btn.active-m{background:#3d2510;color:#d4922e;}
-.toggle-btn.active-p{background:#1a2e20;color:#4daa7e;}
-
-.sec-label{font-size:12px;font-weight:500;color:#6a5a4a;letter-spacing:.07em;text-transform:uppercase;margin-bottom:10px;}
+.toggle-btn.active-m{background:#5a3010;color:#d4922e;}
+.toggle-btn.active-p{background:#1a3a28;color:#4daa7e;}
+.sec-label{font-size:12px;font-weight:500;color:#8a7a6a;letter-spacing:.07em;text-transform:uppercase;margin-bottom:10px;}
 .section{margin-bottom:24px;}
-
-.turno-card{background:#4a2e18;border:1.5px solid #6a4828;border-radius:18px;padding:20px;margin:0 4px;}
-.winner-box{background:#1e1208;border-radius:14px;padding:20px;text-align:center;min-height:100px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;}
+.turno-card{background:#3d2410;border:1.5px solid #6a4828;border-radius:18px;padding:20px;margin:0 4px;}
+.winner-box{background:#2a1a0c;border-radius:14px;padding:20px;text-align:center;min-height:100px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;}
 .w-name{font-size:26px;font-weight:700;color:#f0e6d8;}
-.w-sub{font-size:14px;color:#7a6a5a;}
-.w-prev{font-size:12px;color:#5a4a3a;margin-top:4px;}
-.w-empty{font-size:14px;color:#4a3a2a;font-style:italic;}
-.giro-txt{font-size:12px;color:#5a4a3a;text-align:center;margin-top:10px;min-height:16px;}
+.w-sub{font-size:14px;color:#8a7a6a;}
+.w-prev{font-size:12px;color:#6a5a4a;margin-top:4px;}
+.w-empty{font-size:14px;color:#5a4a3a;font-style:italic;}
+.giro-txt{font-size:12px;color:#7a6a5a;text-align:center;margin-top:10px;min-height:16px;}
 .skip-info{font-size:12px;color:#c87d30;margin-top:6px;text-align:center;min-height:16px;font-style:italic;}
-.btn-avanza{width:100%;margin-top:14px;padding:17px;border:1.5px solid #4a3020;border-radius:12px;background:#5a3820;color:#c4b0a0;font-size:16px;cursor:pointer;-webkit-tap-highlight-color:transparent;-webkit-appearance:none;touch-action:manipulation;}
-.btn-avanza:active{background:#6a4828;}
+.btn-avanza{width:100%;margin-top:14px;padding:17px;border:1.5px solid #7a5030;border-radius:12px;background:#4a2e18;color:#d4c0a8;font-size:16px;cursor:pointer;-webkit-tap-highlight-color:transparent;-webkit-appearance:none;touch-action:manipulation;}
+.btn-avanza:active{background:#5a3820;}
 .btn-avanza:disabled{opacity:.25;cursor:default;}
-.btn-link{font-size:13px;color:#5a4a3a;background:none;border:none;cursor:pointer;text-decoration:underline;margin-top:10px;display:block;padding:8px 0;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
-.btn-link:active{color:#9a8070;}
-
-.divider{height:1px;background:#2e1e0e;margin:0 0 24px;}
-
-/* GRUPPI SCREEN */
-.back-btn{width:44px;height:44px;border-radius:12px;border:1.5px solid #6a4828;background:#3d2410;color:#b09080;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;margin-bottom:20px;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
-.back-btn:active{background:#6a4828;}
-
+.btn-link{font-size:13px;color:#7a6a5a;background:none;border:none;cursor:pointer;text-decoration:underline;margin-top:10px;display:block;padding:8px 0;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+.btn-link:active{color:#b09080;}
+.divider{height:1px;background:#3a2010;margin:0 0 24px;}
+.back-btn{width:44px;height:44px;border-radius:12px;border:1.5px solid #6a4828;background:#3d2410;color:#c0a880;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;margin-bottom:20px;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+.back-btn:active{background:#4a2e18;}
 .gruppi-list{display:flex;flex-direction:column;gap:8px;}
-.gruppo-row{display:flex;align-items:center;gap:10px;padding:14px;background:#4a2e18;border:1.5px solid #6a4828;border-radius:12px;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
-.gruppo-row:active{background:#6a4828;}
-.gruppo-row.selected{border-color:#7a4a1a;background:#5a3820;}
+.gruppo-row{display:flex;align-items:center;gap:10px;padding:14px;background:#3d2410;border:1.5px solid #6a4828;border-radius:12px;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+.gruppo-row:active{background:#4a2e18;}
+.gruppo-row.selected{border-color:#c87d30;background:#4a2e18;}
 .gr-nome{flex:1;font-size:17px;color:#d4c4b0;}
-.gr-count{font-size:12px;color:#6a5a4a;}
-.gr-arrow{font-size:16px;color:#5a4a3a;}
-
+.gr-count{font-size:12px;color:#8a7a6a;}
+.gr-arrow{font-size:16px;color:#7a6a5a;}
 .add-row{display:flex;gap:8px;width:100%;}
 .add-row input{flex:1;min-width:0;padding:14px 12px;border:1.5px solid #6a4828;border-radius:12px;background:#3d2410;color:#e8ddd0;font-size:16px;-webkit-appearance:none;}
-.add-row input::placeholder{color:#5a4a3a;}
-.add-row input:focus{outline:none;border-color:#6a4a2a;}
-.btn-add{width:50px;height:50px;flex-shrink:0;border:1.5px solid #6a4828;border-radius:12px;background:#3d2410;color:#b09080;font-size:26px;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
-.btn-add:active{background:#6a4828;}
-
+.add-row input::placeholder{color:#7a6a5a;}
+.add-row input:focus{outline:none;border-color:#c87d30;}
+.btn-add{width:50px;height:50px;flex-shrink:0;border:1.5px solid #6a4828;border-radius:12px;background:#3d2410;color:#c0a880;font-size:26px;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+.btn-add:active{background:#4a2e18;}
 .colleghi-list{display:flex;flex-direction:column;gap:7px;margin-top:10px;}
-.collega-row{display:flex;align-items:center;gap:10px;padding:14px 12px;background:#4a2e18;border:1.5px solid #6a4828;border-radius:12px;}
-.c-idx{font-size:13px;color:#5a4a3a;min-width:20px;}
+.collega-row{display:flex;align-items:center;gap:10px;padding:14px 12px;background:#3d2410;border:1.5px solid #6a4828;border-radius:12px;}
+.c-idx{font-size:13px;color:#7a6a5a;min-width:20px;}
 .c-nome{flex:1;font-size:16px;color:#d4c4b0;}
 .c-badges{display:flex;gap:5px;}
 .badge{font-size:12px;padding:3px 9px;border-radius:99px;font-weight:500;}
-.bm{background:#3d2510;color:#d4922e;}
-.bp{background:#1a2e20;color:#4daa7e;}
-.btn-rm{width:40px;height:40px;border-radius:50%;border:none;background:#6a4828;color:#7a6a5a;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
-.btn-rm:active{background:#5a1a1a;color:#dd6644;}
-.empty{font-size:14px;color:#4a3a2a;font-style:italic;padding:4px 0;}
-
+.bm{background:#5a3010;color:#d4922e;}
+.bp{background:#1a3a28;color:#4daa7e;}
+.btn-rm{width:40px;height:40px;border-radius:50%;border:none;background:#4a3020;color:#9a8070;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+.btn-rm:active{background:#6a2010;color:#ee6644;}
+.empty{font-size:14px;color:#6a5a4a;font-style:italic;padding:4px 0;}
 .turno-sel{display:flex;gap:8px;margin-top:8px;}
-.turno-sel-btn{flex:1;padding:10px;border:1.5px solid #6a4828;border-radius:10px;background:#3d2410;color:#6a5a4a;font-size:14px;cursor:pointer;text-align:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
-.turno-sel-btn.sel-m{border-color:#7a4a1a;background:#3d2510;color:#d4922e;}
-.turno-sel-btn.sel-p{border-color:#1a5a3a;background:#1a2e20;color:#4daa7e;}
-.turno-sel-btn.sel-both{border-color:#6a4a1a;background:#2e1e0a;color:#c4a060;}
-.turno-sel-label{font-size:11px;color:#5a4a3a;margin-top:10px;margin-bottom:4px;}
+.turno-sel-btn{flex:1;padding:10px;border:1.5px solid #6a4828;border-radius:10px;background:#3d2410;color:#8a7a6a;font-size:14px;cursor:pointer;text-align:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+.turno-sel-btn.sel-m{border-color:#c87d30;background:#5a3010;color:#d4922e;}
+.turno-sel-btn.sel-p{border-color:#2daa7e;background:#1a3a28;color:#4daa7e;}
+.turno-sel-btn.sel-both{border-color:#c87d30;background:#4a2e18;color:#c4a060;}
 </style>
 </head>
 <body>
 
-<!-- SCREEN PRINCIPALE -->
 <div class="screen active" id="screen-main">
-
-  <div class="header" id="gruppo-attivo-btn">
+  <div class="header" id="header-btn">
     <div class="hicon">&#x2615;</div>
     <div>
       <div class="htitle">Oggi chi paga?</div>
-      <div class="hgroup-name" id="gruppo-nome-label">—</div>
+      <div class="hgroup-name" id="gruppo-nome-label">caricamento...</div>
     </div>
   </div>
 
@@ -105,7 +91,6 @@ body{background:#1e1208;color:#e8ddd0;font-family:-apple-system,BlinkMacSystemFo
       <button class="toggle-btn active-m" id="toggle-m" type="button">&#9679; Mattina</button>
       <button class="toggle-btn" id="toggle-p" type="button">&#9679; Pomeriggio</button>
     </div>
-
     <div id="panel-mattina">
       <div class="turno-card">
         <div class="winner-box" id="winner-mattina"><span class="w-empty">nessun turno attivo</span></div>
@@ -115,7 +100,6 @@ body{background:#1e1208;color:#e8ddd0;font-family:-apple-system,BlinkMacSystemFo
         <button class="btn-link" id="reset-mattina" type="button">azzera rotazione mattina</button>
       </div>
     </div>
-
     <div id="panel-pomeriggio" style="display:none;">
       <div class="turno-card">
         <div class="winner-box" id="winner-pomeriggio"><span class="w-empty">nessun turno attivo</span></div>
@@ -128,11 +112,10 @@ body{background:#1e1208;color:#e8ddd0;font-family:-apple-system,BlinkMacSystemFo
   </div>
 </div>
 
-<!-- SCREEN GRUPPI -->
 <div class="screen" id="screen-gruppi">
   <div style="padding:16px 14px 40px;max-width:420px;margin:0 auto;">
-    <button class="back-btn" id="btn-back" aria-label="Torna">&#8592;</button>
-    <div style="margin-bottom:20px;"><div style="font-size:28px;font-weight:700;color:#f0e6d8;">Gruppi</div></div>
+    <button class="back-btn" id="btn-back" type="button">&#8592;</button>
+    <div style="font-size:28px;font-weight:700;color:#f0e6d8;margin-bottom:20px;">Gruppi</div>
 
     <div class="sec-label">I tuoi gruppi</div>
     <div class="gruppi-list" id="gruppi-list"></div>
@@ -140,291 +123,322 @@ body{background:#1e1208;color:#e8ddd0;font-family:-apple-system,BlinkMacSystemFo
     <div style="margin-top:16px;">
       <div class="sec-label">Nuovo gruppo</div>
       <div class="add-row">
-        <input type="text" id="input-gruppo" placeholder="Nome gruppo..." maxlength="30" autocomplete="off" autocorrect="off" autocapitalize="words"/>
+        <input type="text" id="input-gruppo" placeholder="Nome gruppo..." maxlength="30" autocomplete="off" autocorrect="off" autocapitalize="words">
         <button class="btn-add" id="btn-add-gruppo" type="button">+</button>
       </div>
     </div>
 
     <div class="divider" style="margin-top:24px;"></div>
 
-    <div id="sezione-membri">
-      <div class="sec-label" id="label-membri">Membri</div>
-      <div class="colleghi-list" id="lista-colleghi"><span class="empty">Nessun membro aggiunto</span></div>
+    <div class="sec-label" id="label-membri">Membri</div>
+    <div class="colleghi-list" id="lista-colleghi"><span class="empty">Nessun membro aggiunto</span></div>
 
-      <div style="margin-top:14px;">
-        <div class="add-row">
-          <input type="text" id="input-nome" placeholder="Nome membro..." maxlength="30" autocomplete="off" autocorrect="off" autocapitalize="words"/>
-          <button class="btn-add" id="btn-add-membro" type="button">+</button>
-        </div>
-        <div class="turno-sel">
-          <button class="turno-sel-btn sel-both" id="sel-entrambi" type="button">Mattina e pomeriggio</button>
-        </div>
-        <div class="turno-sel" style="margin-top:8px;">
-          <button class="turno-sel-btn" id="sel-mattina" type="button">Solo mattina</button>
-          <button class="turno-sel-btn" id="sel-pomeriggio" type="button">Solo pomeriggio</button>
-        </div>
+    <div style="margin-top:14px;">
+      <div class="add-row">
+        <input type="text" id="input-nome" placeholder="Nome membro..." maxlength="30" autocomplete="off" autocorrect="off" autocapitalize="words">
+        <button class="btn-add" id="btn-add-membro" type="button">+</button>
       </div>
-
+      <div class="turno-sel">
+        <button class="turno-sel-btn sel-both" id="sel-entrambi" type="button">Mattina e pomeriggio</button>
+      </div>
+      <div class="turno-sel" style="margin-top:8px;">
+        <button class="turno-sel-btn" id="sel-mattina" type="button">Solo mattina</button>
+        <button class="turno-sel-btn" id="sel-pomeriggio" type="button">Solo pomeriggio</button>
+      </div>
     </div>
   </div>
 </div>
 
 <script>
-var FIREBASE_URL='https://oggichipaga-default-rtdb.europe-west1.firebasedatabase.app/caffe';
-var allData={gruppoAttivo:'Ufficio',gruppi:{'Ufficio':{colleghi:[],indiceM:-1,indiceP:-1,ultimoTurno:{mattina:null,pomeriggio:null},penultimoTurno:{mattina:null,pomeriggio:null}}}};
-var localWrite=false;
-try{var _cached=JSON.parse(localStorage.getItem('caffe_v6')||'null');if(_cached&&_cached.gruppi) allData=_cached;}catch(e){}
+var FB = 'https://oggichipaga-default-rtdb.europe-west1.firebasedatabase.app/caffe.json';
+var writing = false;
+var selTurno = 'MP';
 
-function newGruppo(){
-  return {colleghi:[],indiceM:-1,indiceP:-1,
-    ultimoTurno:{mattina:null,pomeriggio:null},
-    penultimoTurno:{mattina:null,pomeriggio:null}};
-}
-function G(){return allData.gruppi[allData.gruppoAttivo];}
-
-function salva(){
-  localWrite=true;
-  fetch(FIREBASE_URL+'.json',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(allData)}).catch(function(){});
-  try{localStorage.setItem('caffe_v6',JSON.stringify(allData));}catch(e){}
-  setTimeout(function(){localWrite=false;},1000);
+function newGruppo() {
+  return {
+    colleghi: [],
+    indiceM: -1,
+    indiceP: -1,
+    ultimoTurno: { mattina: null, pomeriggio: null },
+    penultimoTurno: { mattina: null, pomeriggio: null }
+  };
 }
 
-function carica(cb){
-  fetch(FIREBASE_URL+'.json')
-    .then(function(r){return r.json();})
-    .then(function(data){
-      if(data&&data.gruppi){allData=data;}
-      else{allData={gruppoAttivo:'Ufficio',gruppi:{'Ufficio':newGruppo()}};salva();}
-      if(cb) cb();
-    })
-    .catch(function(){
-      var local=null;
-      try{local=JSON.parse(localStorage.getItem('caffe_v6')||'null');}catch(e){}
-      allData=local||{gruppoAttivo:'Ufficio',gruppi:{'Ufficio':newGruppo()}};
-      if(cb) cb();
-    });
+var D = null;
+try { D = JSON.parse(localStorage.getItem('ccp') || 'null'); } catch(e) {}
+if (!D || !D.gruppi) D = { gruppoAttivo: 'Ufficio', gruppi: { 'Ufficio': newGruppo() } };
+
+function GG() { return D.gruppi[D.gruppoAttivo]; }
+
+function save() {
+  writing = true;
+  try { localStorage.setItem('ccp', JSON.stringify(D)); } catch(e) {}
+  fetch(FB, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(D) })
+    .catch(function() {});
+  setTimeout(function() { writing = false; }, 1500);
 }
 
-setInterval(function(){
-  if(localWrite) return;
-  fetch(FIREBASE_URL+'.json')
-    .then(function(r){return r.json();})
-    .then(function(data){if(data&&data.gruppi){allData=data;render();}})
-    .catch(function(){});
-},5000);
+function xe(s) {
+  s = String(s);
+  s = s.split('&').join('&amp;');
+  s = s.split('<').join('&lt;');
+  s = s.split('>').join('&gt;');
+  s = s.split('"').join('&quot;');
+  return s;
+}
 
-function esc(s){s=String(s);s=s.split('&').join('&amp;');s=s.split('<').join('&lt;');s=s.split('>').join('&gt;');s=s.split('"').join('&quot;');return s;}
-function oggiStr(){var d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();}
-function ieriStr(){var d=new Date();d.setDate(d.getDate()-1);return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();}
+function oggi() {
+  var d = new Date();
+  return d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate();
+}
+function ieri() {
+  var d = new Date();
+  d.setDate(d.getDate()-1);
+  return d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate();
+}
 
-function listaPerTurno(t){
-  return G().colleghi.filter(function(c){
-    return c.turni==='MP'||(t==='mattina'&&c.turni==='M')||(t==='pomeriggio'&&c.turni==='P');
+function listaT(t) {
+  return GG().colleghi.filter(function(c) {
+    return c.turni === 'MP' || (t === 'mattina' && c.turni === 'M') || (t === 'pomeriggio' && c.turni === 'P');
   });
 }
 
-function calcolaProssimo(t){
-  var lista=listaPerTurno(t);
-  var n=lista.length;
-  if(n===0) return {nome:null,saltati:[]};
-  var g=G();
-  var idx=t==='mattina'?g.indiceM:g.indiceP;
-  if(idx<0) return {nome:null,saltati:[]};
-  var altroT=t==='mattina'?'pomeriggio':'mattina';
-  var oggi=oggiStr(); var ieri=ieriStr();
-  var bloccati=[];
-  if(g.ultimoTurno[altroT]&&g.ultimoTurno[altroT].giorno===oggi) bloccati.push(g.ultimoTurno[altroT].nome);
-  if(g.ultimoTurno[t]&&g.ultimoTurno[t].giorno===ieri) bloccati.push(g.ultimoTurno[t].nome);
-  var saltati=[];
-  for(var i=0;i<n;i++){
-    var cand=lista[(idx+i)%n].nome;
-    if(bloccati.indexOf(cand)<0) return {nome:cand,saltati:saltati};
-    saltati.push(cand);
+function prossimo(t) {
+  var lista = listaT(t);
+  var n = lista.length;
+  if (!n) return { nome: null, saltati: [] };
+  var g = GG();
+  var idx = t === 'mattina' ? g.indiceM : g.indiceP;
+  if (idx < 0) return { nome: null, saltati: [] };
+  var altro = t === 'mattina' ? 'pomeriggio' : 'mattina';
+  var bloccati = [];
+  if (g.ultimoTurno[altro] && g.ultimoTurno[altro].giorno === oggi()) bloccati.push(g.ultimoTurno[altro].nome);
+  if (g.ultimoTurno[t] && g.ultimoTurno[t].giorno === ieri()) bloccati.push(g.ultimoTurno[t].nome);
+  var saltati = [];
+  for (var i = 0; i < n; i++) {
+    var c = lista[(idx+i) % n].nome;
+    if (bloccati.indexOf(c) < 0) return { nome: c, saltati: saltati };
+    saltati.push(c);
   }
-  return {nome:lista[idx%n].nome,saltati:[]};
+  return { nome: lista[idx % n].nome, saltati: [] };
 }
 
-function render(){
-  if(!allData) return;
-  var g=G();
-  document.getElementById('gruppo-nome-label').textContent=allData.gruppoAttivo;
-  var resM=calcolaProssimo('mattina');
-  var resP=calcolaProssimo('pomeriggio');
-  [['mattina',resM],['pomeriggio',resP]].forEach(function(pair){
-    var t=pair[0],res=pair[1];
-    var box=document.getElementById('winner-'+t);
-    var giroEl=document.getElementById('giro-'+t);
-    var skipEl=document.getElementById('skip-'+t);
-    var btn=document.getElementById('btn-'+t);
-    var lista=listaPerTurno(t);
-    if(res.nome){
-      var prev='';
-      if(g.penultimoTurno&&g.penultimoTurno[t]&&g.penultimoTurno[t].nome)
-        prev='<div class="w-prev">Ultimo pagante: '+esc(g.penultimoTurno[t].nome)+'</div>';
-      box.innerHTML='<div class="w-name">'+esc(res.nome)+'</div><div class="w-sub">offre il caffe'</div>'+prev;
-      var pos=lista.findIndex(function(c){return c.nome===res.nome;});
-      giroEl.textContent='posizione '+(pos+1)+'/'+lista.length;
-      skipEl.textContent=res.saltati.length>0?'Saltati: '+res.saltati.join(', '):'';
+function render() {
+  if (!D) return;
+  var g = GG();
+  document.getElementById('gruppo-nome-label').textContent = D.gruppoAttivo;
+  var rM = prossimo('mattina');
+  var rP = prossimo('pomeriggio');
+  var turni = [['mattina', rM], ['pomeriggio', rP]];
+  for (var i = 0; i < turni.length; i++) {
+    var t = turni[i][0];
+    var res = turni[i][1];
+    var box = document.getElementById('winner-' + t);
+    var gEl = document.getElementById('giro-' + t);
+    var sEl = document.getElementById('skip-' + t);
+    var btn = document.getElementById('btn-' + t);
+    var lista = listaT(t);
+    if (res.nome) {
+      var prev = '';
+      var pen = g.penultimoTurno;
+      if (pen && pen[t] && pen[t].nome) {
+        prev = '<div class="w-prev">Ultimo pagante: ' + xe(pen[t].nome) + '</div>';
+      }
+      box.innerHTML = '<div class="w-name">' + xe(res.nome) + '</div>' +
+        '<div class="w-sub">offre il caffe</div>' + prev;
+      var pos = -1;
+      for (var j = 0; j < lista.length; j++) { if (lista[j].nome === res.nome) { pos = j; break; } }
+      gEl.textContent = 'posizione ' + (pos+1) + '/' + lista.length;
+      sEl.textContent = res.saltati.length ? 'Saltati: ' + res.saltati.join(', ') : '';
     } else {
-      box.innerHTML='<span class="w-empty">nessun turno attivo</span>';
-      giroEl.textContent=lista.length>0?'premi il pulsante per iniziare':'Nessun membro in questo turno';
-      skipEl.textContent='';
+      box.innerHTML = '<span class="w-empty">nessun turno attivo</span>';
+      gEl.textContent = lista.length ? 'premi il pulsante per iniziare' : 'Nessun membro in questo turno';
+      sEl.textContent = '';
     }
-    btn.disabled=lista.length===0;
-  });
+    btn.disabled = !lista.length;
+  }
 }
 
-function renderGruppi(){
-  var nomi=Object.keys(allData.gruppi);
-  document.getElementById('gruppi-list').innerHTML=nomi.map(function(n){
-    var g=allData.gruppi[n];
-    var cls='gruppo-row'+(n===allData.gruppoAttivo?' selected':'');
-    var delBtn=nomi.length>1?'<button class="btn-del-gruppo" data-del="'+esc(n)+'" style="background:none;border:none;color:#7a3a2a;font-size:13px;text-decoration:underline;cursor:pointer;padding:0 0 0 8px;-webkit-tap-highlight-color:transparent;">elimina</button>':'';
-    return '<div class="'+cls+'" data-g="'+esc(n)+'">'+
-      '<span class="gr-nome">'+esc(n)+'</span>'+
-      '<span class="gr-count">'+g.colleghi.length+' membri</span>'+
-      delBtn+
+function renderGruppi() {
+  if (!D) return;
+  var nomi = Object.keys(D.gruppi);
+  document.getElementById('gruppi-list').innerHTML = nomi.map(function(n) {
+    var g = D.gruppi[n];
+    var sel = n === D.gruppoAttivo ? ' selected' : '';
+    var del = nomi.length > 1 ?
+      '<button data-del="' + xe(n) + '" style="background:none;border:none;color:#aa4428;font-size:13px;text-decoration:underline;cursor:pointer;padding:0 0 0 8px;" type="button">elimina</button>' : '';
+    return '<div class="gruppo-row' + sel + '" data-g="' + xe(n) + '">' +
+      '<span class="gr-nome">' + xe(n) + '</span>' +
+      '<span class="gr-count">' + g.colleghi.length + ' membri</span>' +
+      del +
       '<span class="gr-arrow">&#8250;</span></div>';
   }).join('');
   renderMembri();
 }
 
-function renderMembri(){
-  var g=G();
-  document.getElementById('label-membri').textContent='Membri — '+allData.gruppoAttivo;
-  var lista=document.getElementById('lista-colleghi');
-  if(!g.colleghi.length){lista.innerHTML='<span class="empty">Nessun membro aggiunto</span>';return;}
-  lista.innerHTML=g.colleghi.map(function(c,i){
-    var badges='';
-    if(c.turni==='MP'||c.turni==='M') badges+='<span class="badge bm">mat</span>';
-    if(c.turni==='MP'||c.turni==='P') badges+='<span class="badge bp">pom</span>';
-    return '<div class="collega-row">'+
-      '<span class="c-idx">'+(i+1)+'.</span>'+
-      '<span class="c-nome">'+esc(c.nome)+'</span>'+
-      '<div class="c-badges">'+badges+'</div>'+
-      '<button class="btn-rm" type="button" data-rm="'+i+'">&#10005;</button></div>';
+function renderMembri() {
+  if (!D) return;
+  var g = GG();
+  document.getElementById('label-membri').textContent = 'Membri - ' + D.gruppoAttivo;
+  var el = document.getElementById('lista-colleghi');
+  if (!g.colleghi.length) { el.innerHTML = '<span class="empty">Nessun membro aggiunto</span>'; return; }
+  el.innerHTML = g.colleghi.map(function(c, i) {
+    var b = '';
+    if (c.turni === 'MP' || c.turni === 'M') b += '<span class="badge bm">mat</span>';
+    if (c.turni === 'MP' || c.turni === 'P') b += '<span class="badge bp">pom</span>';
+    return '<div class="collega-row">' +
+      '<span class="c-idx">' + (i+1) + '.</span>' +
+      '<span class="c-nome">' + xe(c.nome) + '</span>' +
+      '<div class="c-badges">' + b + '</div>' +
+      '<button class="btn-rm" type="button" data-rm="' + i + '">&#10005;</button></div>';
   }).join('');
 }
 
-var selTurno='MP';
-function aggiornaSelBtn(){
-  document.getElementById('sel-entrambi').className='turno-sel-btn'+(selTurno==='MP'?' sel-both':'');
-  document.getElementById('sel-mattina').className='turno-sel-btn'+(selTurno==='M'?' sel-m':'');
-  document.getElementById('sel-pomeriggio').className='turno-sel-btn'+(selTurno==='P'?' sel-p':'');
-}
-
-function aggiungiMembro(){
-  var input=document.getElementById('input-nome');
-  var nome=input.value.trim();
-  var g=G();
-  if(!nome||g.colleghi.find(function(c){return c.nome===nome;})){input.value='';return;}
-  g.colleghi.push({nome:nome,turni:selTurno});
-  if(listaPerTurno('mattina').length===1&&g.indiceM<0) g.indiceM=0;
-  if(listaPerTurno('pomeriggio').length===1&&g.indiceP<0) g.indiceP=0;
-  input.value='';salva();renderMembri();render();
-}
-
-function rimuoviMembro(i){
-  var g=G();
-  var nome=g.colleghi[i].nome;
-  g.colleghi.splice(i,1);
-  ['mattina','pomeriggio'].forEach(function(t){
-    var idxKey=t==='mattina'?'indiceM':'indiceP';
-    var lista=listaPerTurno(t);
-    if(!lista.length){g[idxKey]=-1;}
-    else if(g[idxKey]>=lista.length){g[idxKey]=0;}
-    if(g.ultimoTurno[t]&&g.ultimoTurno[t].nome===nome) g.ultimoTurno[t]=null;
-    if(g.penultimoTurno&&g.penultimoTurno[t]&&g.penultimoTurno[t].nome===nome) g.penultimoTurno[t]=null;
-  });
-  salva();renderMembri();render();
-}
-
-function avanza(t){
-  var lista=listaPerTurno(t);
-  if(!lista.length) return;
-  var g=G();
-  var idxKey=t==='mattina'?'indiceM':'indiceP';
-  if(g[idxKey]<0) g[idxKey]=0; else g[idxKey]++;
-  var res=calcolaProssimo(t);
-  var nome=res.nome;
-  if(res.saltati.length>0){
-    var posNome=lista.findIndex(function(c){return c.nome===nome;});
-    var n=lista.length;
-    var base=Math.floor(g[idxKey]/n)*n;
-    g[idxKey]=base+posNome;
-    if(g[idxKey]<base) g[idxKey]+=n;
-  }
-  if(!g.penultimoTurno) g.penultimoTurno={mattina:null,pomeriggio:null};
-  g.penultimoTurno[t]=g.ultimoTurno[t]?{nome:g.ultimoTurno[t].nome}:null;
-  g.ultimoTurno[t]={nome:nome,giorno:oggiStr()};
-  salva();render();
-}
-
-function aggiungiGruppo(){
-  var input=document.getElementById('input-gruppo');
-  var nome=input.value.trim();
-  if(!nome||allData.gruppi[nome]){input.value='';return;}
-  allData.gruppi[nome]=newGruppo();
-  allData.gruppoAttivo=nome;
-  input.value='';salva();renderGruppi();render();
-}
-
-function showScreen(id){
-  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
+function showScreen(id) {
+  var screens = document.querySelectorAll('.screen');
+  for (var i = 0; i < screens.length; i++) screens[i].classList.remove('active');
   document.getElementById(id).classList.add('active');
-  window.scrollTo(0,0);
+  window.scrollTo(0, 0);
 }
 
-// ── EVENT LISTENERS ──
-document.getElementById('toggle-m').addEventListener('click',function(){
-  document.getElementById('panel-mattina').style.display='block';
-  document.getElementById('panel-pomeriggio').style.display='none';
-  this.className='toggle-btn active-m';
-  document.getElementById('toggle-p').className='toggle-btn';
-});
-document.getElementById('toggle-p').addEventListener('click',function(){
-  document.getElementById('panel-mattina').style.display='none';
-  document.getElementById('panel-pomeriggio').style.display='block';
-  this.className='toggle-btn active-p';
-  document.getElementById('toggle-m').className='toggle-btn';
-});
-document.getElementById('btn-mattina').addEventListener('click',function(){avanza('mattina');});
-document.getElementById('btn-pomeriggio').addEventListener('click',function(){avanza('pomeriggio');});
-document.getElementById('reset-mattina').addEventListener('click',function(){
-  if(confirm('Azzerare la rotazione mattina?')){var g=G();g.indiceM=listaPerTurno('mattina').length>0?0:-1;g.ultimoTurno.mattina=null;salva();render();}
-});
-document.getElementById('reset-pomeriggio').addEventListener('click',function(){
-  if(confirm('Azzerare la rotazione pomeriggio?')){var g=G();g.indiceP=listaPerTurno('pomeriggio').length>0?0:-1;g.ultimoTurno.pomeriggio=null;salva();render();}
-});
-document.getElementById('gruppo-attivo-btn').addEventListener('click',function(){renderGruppi();showScreen('screen-gruppi');});
-document.getElementById('btn-back').addEventListener('click',function(){showScreen('screen-main');});
-document.getElementById('gruppi-list').addEventListener('click',function(e){
-  var del=e.target.closest('[data-del]');
-  if(del){
-    e.stopPropagation();
-    var nome=del.getAttribute('data-del');
-    var nomi=Object.keys(allData.gruppi);
-    if(nomi.length<=1){alert('Devi avere almeno un gruppo.');return;}
-    if(!confirm('Eliminare il gruppo "'+nome+'"?')) return;
-    delete allData.gruppi[nome];
-    if(allData.gruppoAttivo===nome) allData.gruppoAttivo=Object.keys(allData.gruppi)[0];
-    salva();renderGruppi();render();return;
-  }
-  var row=e.target.closest('[data-g]');
-  if(row){allData.gruppoAttivo=row.getAttribute('data-g');salva();renderGruppi();render();}
-});
-document.getElementById('sel-entrambi').addEventListener('click',function(){selTurno='MP';aggiornaSelBtn();});
-document.getElementById('sel-mattina').addEventListener('click',function(){selTurno='M';aggiornaSelBtn();});
-document.getElementById('sel-pomeriggio').addEventListener('click',function(){selTurno='P';aggiornaSelBtn();});
-document.getElementById('input-nome').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();aggiungiMembro();}});
-document.getElementById('btn-add-membro').addEventListener('click',aggiungiMembro);
-document.getElementById('lista-colleghi').addEventListener('click',function(e){
-  var b=e.target.closest('[data-rm]');if(b)rimuoviMembro(parseInt(b.getAttribute('data-rm')));
-});
-document.getElementById('input-gruppo').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();aggiungiGruppo();}});
-document.getElementById('btn-add-gruppo').addEventListener('click',aggiungiGruppo);
+function aggSelBtn() {
+  document.getElementById('sel-entrambi').className = 'turno-sel-btn' + (selTurno === 'MP' ? ' sel-both' : '');
+  document.getElementById('sel-mattina').className = 'turno-sel-btn' + (selTurno === 'M' ? ' sel-m' : '');
+  document.getElementById('sel-pomeriggio').className = 'turno-sel-btn' + (selTurno === 'P' ? ' sel-p' : '');
+}
 
-carica(function(){render();});
+function aggiungiMembro() {
+  var input = document.getElementById('input-nome');
+  var nome = input.value.trim();
+  if (!nome) return;
+  var g = GG();
+  for (var i = 0; i < g.colleghi.length; i++) { if (g.colleghi[i].nome === nome) { input.value = ''; return; } }
+  g.colleghi.push({ nome: nome, turni: selTurno });
+  if (listaT('mattina').length === 1 && g.indiceM < 0) g.indiceM = 0;
+  if (listaT('pomeriggio').length === 1 && g.indiceP < 0) g.indiceP = 0;
+  input.value = '';
+  save(); renderMembri(); render();
+}
+
+function rimuoviMembro(i) {
+  var g = GG();
+  var nome = g.colleghi[i].nome;
+  g.colleghi.splice(i, 1);
+  var turni2 = ['mattina', 'pomeriggio'];
+  for (var k = 0; k < turni2.length; k++) {
+    var t = turni2[k];
+    var idxKey = t === 'mattina' ? 'indiceM' : 'indiceP';
+    var lista = listaT(t);
+    if (!lista.length) g[idxKey] = -1;
+    else if (g[idxKey] >= lista.length) g[idxKey] = 0;
+    if (g.ultimoTurno[t] && g.ultimoTurno[t].nome === nome) g.ultimoTurno[t] = null;
+    if (g.penultimoTurno && g.penultimoTurno[t] && g.penultimoTurno[t].nome === nome) g.penultimoTurno[t] = null;
+  }
+  save(); renderMembri(); render();
+}
+
+function avanza(t) {
+  var lista = listaT(t);
+  if (!lista.length) return;
+  var g = GG();
+  var idxKey = t === 'mattina' ? 'indiceM' : 'indiceP';
+  if (g[idxKey] < 0) g[idxKey] = 0; else g[idxKey]++;
+  var res = prossimo(t);
+  if (res.saltati.length) {
+    var pos2 = -1;
+    for (var j = 0; j < lista.length; j++) { if (lista[j].nome === res.nome) { pos2 = j; break; } }
+    var n = lista.length;
+    var base = Math.floor(g[idxKey] / n) * n;
+    g[idxKey] = base + pos2;
+    if (g[idxKey] < base) g[idxKey] += n;
+  }
+  if (!g.penultimoTurno) g.penultimoTurno = { mattina: null, pomeriggio: null };
+  g.penultimoTurno[t] = g.ultimoTurno[t] ? { nome: g.ultimoTurno[t].nome } : null;
+  g.ultimoTurno[t] = { nome: res.nome, giorno: oggi() };
+  save(); render();
+}
+
+// Polling Firebase ogni 5s
+setInterval(function() {
+  if (writing) return;
+  fetch(FB).then(function(r) { return r.json(); }).then(function(data) {
+    if (data && data.gruppi) { D = data; render(); }
+  }).catch(function() {});
+}, 5000);
+
+// Carica da Firebase all'avvio
+fetch(FB).then(function(r) { return r.json(); }).then(function(data) {
+  if (data && data.gruppi) { D = data; render(); }
+}).catch(function() { render(); });
+
+// ── EVENTI ──
+document.getElementById('toggle-m').addEventListener('click', function() {
+  document.getElementById('panel-mattina').style.display = 'block';
+  document.getElementById('panel-pomeriggio').style.display = 'none';
+  document.getElementById('toggle-m').className = 'toggle-btn active-m';
+  document.getElementById('toggle-p').className = 'toggle-btn';
+});
+document.getElementById('toggle-p').addEventListener('click', function() {
+  document.getElementById('panel-mattina').style.display = 'none';
+  document.getElementById('panel-pomeriggio').style.display = 'block';
+  document.getElementById('toggle-m').className = 'toggle-btn';
+  document.getElementById('toggle-p').className = 'toggle-btn active-p';
+});
+document.getElementById('btn-mattina').addEventListener('click', function() { avanza('mattina'); });
+document.getElementById('btn-pomeriggio').addEventListener('click', function() { avanza('pomeriggio'); });
+document.getElementById('reset-mattina').addEventListener('click', function() {
+  if (confirm('Azzerare la rotazione mattina?')) {
+    var g = GG(); g.indiceM = listaT('mattina').length ? 0 : -1; g.ultimoTurno.mattina = null; save(); render();
+  }
+});
+document.getElementById('reset-pomeriggio').addEventListener('click', function() {
+  if (confirm('Azzerare la rotazione pomeriggio?')) {
+    var g = GG(); g.indiceP = listaT('pomeriggio').length ? 0 : -1; g.ultimoTurno.pomeriggio = null; save(); render();
+  }
+});
+document.getElementById('header-btn').addEventListener('click', function() { renderGruppi(); showScreen('screen-gruppi'); });
+document.getElementById('btn-back').addEventListener('click', function() { showScreen('screen-main'); });
+document.getElementById('gruppi-list').addEventListener('click', function(e) {
+  var del = e.target.closest('[data-del]');
+  if (del) {
+    e.stopPropagation();
+    var nome = del.getAttribute('data-del');
+    var nomi = Object.keys(D.gruppi);
+    if (nomi.length <= 1) { alert('Devi avere almeno un gruppo.'); return; }
+    if (!confirm('Eliminare il gruppo "' + nome + '"?')) return;
+    delete D.gruppi[nome];
+    if (D.gruppoAttivo === nome) D.gruppoAttivo = Object.keys(D.gruppi)[0];
+    save(); renderGruppi(); render(); return;
+  }
+  var row = e.target.closest('[data-g]');
+  if (row) { D.gruppoAttivo = row.getAttribute('data-g'); save(); renderGruppi(); render(); }
+});
+document.getElementById('sel-entrambi').addEventListener('click', function() { selTurno = 'MP'; aggSelBtn(); });
+document.getElementById('sel-mattina').addEventListener('click', function() { selTurno = 'M'; aggSelBtn(); });
+document.getElementById('sel-pomeriggio').addEventListener('click', function() { selTurno = 'P'; aggSelBtn(); });
+document.getElementById('input-nome').addEventListener('keydown', function(e) { if (e.key === 'Enter') { e.preventDefault(); aggiungiMembro(); } });
+document.getElementById('btn-add-membro').addEventListener('click', aggiungiMembro);
+document.getElementById('lista-colleghi').addEventListener('click', function(e) {
+  var b = e.target.closest('[data-rm]'); if (b) rimuoviMembro(parseInt(b.getAttribute('data-rm')));
+});
+document.getElementById('input-gruppo').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') { e.preventDefault();
+    var input = document.getElementById('input-gruppo');
+    var nome = input.value.trim();
+    if (!nome || D.gruppi[nome]) { input.value = ''; return; }
+    D.gruppi[nome] = newGruppo(); D.gruppoAttivo = nome;
+    input.value = ''; save(); renderGruppi(); render();
+  }
+});
+document.getElementById('btn-add-gruppo').addEventListener('click', function() {
+  var input = document.getElementById('input-gruppo');
+  var nome = input.value.trim();
+  if (!nome || D.gruppi[nome]) { input.value = ''; return; }
+  D.gruppi[nome] = newGruppo(); D.gruppoAttivo = nome;
+  input.value = ''; save(); renderGruppi(); render();
+});
+
+render();
 </script>
 </body>
 </html>
