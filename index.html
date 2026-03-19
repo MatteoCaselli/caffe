@@ -156,7 +156,6 @@ body{background:#1e1208;color:#e8ddd0;font-family:-apple-system,BlinkMacSystemFo
           <input type="text" id="input-nome" placeholder="Nome membro..." maxlength="30" autocomplete="off" autocorrect="off" autocapitalize="words"/>
           <button class="btn-add" id="btn-add-membro" type="button">+</button>
         </div>
-        <div class="turno-sel-label">Partecipa a:</div>
         <div class="turno-sel">
           <button class="turno-sel-btn sel-both" id="sel-entrambi" type="button">Mattina e pomeriggio</button>
         </div>
@@ -166,9 +165,6 @@ body{background:#1e1208;color:#e8ddd0;font-family:-apple-system,BlinkMacSystemFo
         </div>
       </div>
 
-      <div style="margin-top:20px;display:flex;justify-content:flex-end;">
-        <button class="btn-link" id="btn-elimina-gruppo" style="color:#7a3a2a;">elimina gruppo</button>
-      </div>
     </div>
   </div>
 </div>
@@ -252,9 +248,11 @@ function renderGruppi(){
   lista.innerHTML=nomi.map(function(n){
     var g=allData.gruppi[n];
     var cls='gruppo-row'+(n===allData.gruppoAttivo?' selected':'');
+    var delBtn=nomi.length>1?'<button class="btn-del-gruppo" data-del="'+esc(n)+'" style="background:none;border:none;color:#7a3a2a;font-size:13px;text-decoration:underline;cursor:pointer;padding:0 0 0 8px;-webkit-tap-highlight-color:transparent;">elimina</button>':'';
     return '<div class="'+cls+'" data-g="'+esc(n)+'">'+
       '<span class="gr-nome">'+esc(n)+'</span>'+
       '<span class="gr-count">'+g.colleghi.length+' membri</span>'+
+      delBtn+
       '<span class="gr-arrow">&#8250;</span></div>';
   }).join('');
   renderMembri();
@@ -384,6 +382,17 @@ document.getElementById('reset-pomeriggio').addEventListener('click',function(){
 document.getElementById('gruppo-attivo-btn').addEventListener('click',function(){renderGruppi();showScreen('screen-gruppi');});
 document.getElementById('btn-back').addEventListener('click',function(){showScreen('screen-main');});
 document.getElementById('gruppi-list').addEventListener('click',function(e){
+  var del=e.target.closest('[data-del]');
+  if(del){
+    e.stopPropagation();
+    var nome=del.getAttribute('data-del');
+    var nomi=Object.keys(allData.gruppi);
+    if(nomi.length<=1){alert('Devi avere almeno un gruppo.');return;}
+    if(!confirm('Eliminare il gruppo "'+nome+'"?')) return;
+    delete allData.gruppi[nome];
+    if(allData.gruppoAttivo===nome) allData.gruppoAttivo=Object.keys(allData.gruppi)[0];
+    salva();renderGruppi();render();return;
+  }
   var row=e.target.closest('[data-g]');
   if(row){allData.gruppoAttivo=row.getAttribute('data-g');salva();renderGruppi();render();}
 });
@@ -394,7 +403,6 @@ document.getElementById('lista-colleghi').addEventListener('click',function(e){
 });
 document.getElementById('input-gruppo').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();aggiungiGruppo();}});
 document.getElementById('btn-add-gruppo').addEventListener('click',aggiungiGruppo);
-document.getElementById('btn-elimina-gruppo').addEventListener('click',eliminaGruppo);
 
 render();
 </script>
