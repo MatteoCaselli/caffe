@@ -171,8 +171,9 @@ body{background:#1e1208;color:#e8ddd0;font-family:-apple-system,BlinkMacSystemFo
 
 <script>
 var FIREBASE_URL='https://oggichipaga-default-rtdb.europe-west1.firebasedatabase.app/caffe';
-var allData=null;
+var allData={gruppoAttivo:'Ufficio',gruppi:{'Ufficio':{colleghi:[],indiceM:-1,indiceP:-1,ultimoTurno:{mattina:null,pomeriggio:null},penultimoTurno:{mattina:null,pomeriggio:null}}}};
 var localWrite=false;
+try{var _cached=JSON.parse(localStorage.getItem('caffe_v6')||'null');if(_cached&&_cached.gruppi) allData=_cached;}catch(e){}
 
 function newGruppo(){
   return {colleghi:[],indiceM:-1,indiceP:-1,
@@ -212,7 +213,7 @@ setInterval(function(){
     .catch(function(){});
 },5000);
 
-function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function esc(s){s=String(s);s=s.split('&').join('&amp;');s=s.split('<').join('&lt;');s=s.split('>').join('&gt;');s=s.split('"').join('&quot;');return s;}
 function oggiStr(){var d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();}
 function ieriStr(){var d=new Date();d.setDate(d.getDate()-1);return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();}
 
