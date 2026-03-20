@@ -168,7 +168,15 @@ var D = null;
 try { D = JSON.parse(localStorage.getItem('ccp') || 'null'); } catch(e) {}
 if (!D || !D.gruppi) D = { gruppoAttivo: 'Ufficio', gruppi: { 'Ufficio': newGruppo() } };
 
-function GG() { return D.gruppi[D.gruppoAttivo]; }
+function GG() {
+  if (!D || !D.gruppi) return { colleghi:[], indiceM:-1, indiceP:-1, ultimoTurno:{mattina:null,pomeriggio:null}, penultimoTurno:{mattina:null,pomeriggio:null} };
+  if (!D.gruppi[D.gruppoAttivo]) D.gruppoAttivo = Object.keys(D.gruppi)[0];
+  var g = D.gruppi[D.gruppoAttivo];
+  if (!g.colleghi) g.colleghi = [];
+  if (!g.ultimoTurno) g.ultimoTurno = {mattina:null,pomeriggio:null};
+  if (!g.penultimoTurno) g.penultimoTurno = {mattina:null,pomeriggio:null};
+  return g;
+}
 
 function save() {
   writing = true;
@@ -198,7 +206,9 @@ function ieri() {
 }
 
 function listaT(t) {
-  return GG().colleghi.filter(function(c) {
+  var g = GG();
+  if (!g || !g.colleghi) return [];
+  return g.colleghi.filter(function(c) {
     return c.turni === 'MP' || (t === 'mattina' && c.turni === 'M') || (t === 'pomeriggio' && c.turni === 'P');
   });
 }
@@ -269,7 +279,7 @@ function renderGruppi() {
       '<button data-del="' + xe(n) + '" style="background:none;border:none;color:#aa4428;font-size:13px;text-decoration:underline;cursor:pointer;padding:0 0 0 8px;" type="button">elimina</button>' : '';
     return '<div class="gruppo-row' + sel + '" data-g="' + xe(n) + '">' +
       '<span class="gr-nome">' + xe(n) + '</span>' +
-      '<span class="gr-count">' + g.colleghi.length + ' membri</span>' +
+      '<span class="gr-count">' + (g.colleghi ? g.colleghi.length : 0) + ' membri</span>' +
       del +
       '<span class="gr-arrow">&#8250;</span></div>';
   }).join('');
@@ -362,7 +372,17 @@ function avanza(t) {
 setInterval(function() {
   if (writing) return;
   fetch(FB).then(function(r) { return r.json(); }).then(function(data) {
-    if (data && data.gruppi) { D = data; render(); }
+    if (data && data.gruppi) {
+    Object.keys(data.gruppi).forEach(function(k) {
+      var g = data.gruppi[k];
+      if (!g.colleghi) g.colleghi = [];
+      if (!g.ultimoTurno) g.ultimoTurno = {mattina:null,pomeriggio:null};
+      if (!g.penultimoTurno) g.penultimoTurno = {mattina:null,pomeriggio:null};
+      if (g.indiceM === undefined) g.indiceM = -1;
+      if (g.indiceP === undefined) g.indiceP = -1;
+    });
+    D = data; render();
+  }
   }).catch(function() {});
 }, 5000);
 
