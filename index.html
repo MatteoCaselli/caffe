@@ -29,9 +29,9 @@ body{background:#1e1208;color:#e8ddd0;font-family:-apple-system,BlinkMacSystemFo
 .section{margin-bottom:24px;}
 .turno-card{background:#3d2410;border:1.5px solid #6a4828;border-radius:18px;padding:20px;margin:0 4px;}
 .winner-box{background:#2a1a0c;border-radius:14px;padding:20px;text-align:center;min-height:100px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;}
-.w-name{font-size:26px;font-weight:700;color:#f0e6d8;}
-.w-sub{font-size:14px;color:#8a7a6a;}
-.w-prev{font-size:12px;color:#6a5a4a;margin-top:4px;}
+.w-name{font-size:32px;font-weight:700;color:#f0e6d8;}
+.w-sub{font-size:17px;color:#8a7a6a;}
+.w-prev{font-size:15px;color:#6a5a4a;margin-top:6px;}
 .w-empty{font-size:14px;color:#5a4a3a;font-style:italic;}
 .giro-txt{font-size:12px;color:#7a6a5a;text-align:center;margin-top:10px;min-height:16px;}
 .skip-info{font-size:12px;color:#c87d30;margin-top:6px;text-align:center;min-height:16px;font-style:italic;}
@@ -64,14 +64,38 @@ body{background:#1e1208;color:#e8ddd0;font-family:-apple-system,BlinkMacSystemFo
 .badge{font-size:12px;padding:3px 9px;border-radius:99px;font-weight:500;}
 .bm{background:#5a3010;color:#d4922e;}
 .bp{background:#1a3a28;color:#4daa7e;}
+.bmp{background:#1e2e42;color:#7ab0df;}
 .btn-rm{width:40px;height:40px;border-radius:50%;border:none;background:#4a3020;color:#9a8070;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
 .btn-rm:active{background:#6a2010;color:#ee6644;}
 .empty{font-size:14px;color:#6a5a4a;font-style:italic;padding:4px 0;}
 .turno-sel{display:flex;gap:8px;margin-top:8px;}
-.turno-sel-btn{flex:1;padding:10px;border:1.5px solid #6a4828;border-radius:10px;background:#3d2410;color:#8a7a6a;font-size:14px;cursor:pointer;text-align:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+.turno-sel-btn{flex:1;padding:10px;border:1.5px solid #6a4828;border-radius:10px;background:#3d2410;color:#8a7a6a;font-size:14px;cursor:pointer;text-align:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:all .15s;}
 .turno-sel-btn.sel-m{border-color:#c87d30;background:#5a3010;color:#d4922e;}
 .turno-sel-btn.sel-p{border-color:#2daa7e;background:#1a3a28;color:#4daa7e;}
-.turno-sel-btn.sel-both{border-color:#c87d30;background:#4a2e18;color:#c4a060;}
+.turno-sel-btn.sel-both{border-color:#7ab0df;background:#1e2e42;color:#7ab0df;}
+#sel-mattina:not(.sel-m){border-color:#7a4a1a;color:#c87d30;}
+#sel-pomeriggio:not(.sel-p){border-color:#1a5a3a;color:#4daa7e;}
+.assenti-card{background:#3d2410;border:1.5px solid #6a4828;border-radius:14px;padding:10px 12px;margin-bottom:16px;}
+.assenti-list{display:flex;flex-direction:column;gap:0;}
+.assente-row{display:flex;align-items:center;gap:10px;padding:8px 4px;border-bottom:1px solid #4a3020;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+.assente-row:last-child{border-bottom:none;}
+.assente-row:active{opacity:.7;}
+.assente-row.assente{opacity:.5;}
+.assente-check{width:20px;height:20px;border-radius:5px;border:1.5px solid #6a4828;background:transparent;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;color:#c87d30;}
+.assente-row.assente .assente-check{background:#5a3010;border-color:#5a3010;}
+.assente-nome{flex:1;font-size:14px;color:#d4c4b0;}
+.assente-row.assente .assente-nome{text-decoration:line-through;color:#7a6a5a;}
+.assente-turni{font-size:11px;color:#8a7a6a;}
+.assente-check.assente-presente{background:#5a3010;border-color:#c87d30;color:#d4922e;}
+.assenti-header{display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:2px 0;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+.assenti-header:active{opacity:.7;}
+.assenti-arrow{font-size:13px;color:#8a7a6a;display:inline-block;transition:transform .2s;}
+.assenti-body{display:none;margin-top:8px;}
+.assenti-body.open{display:block;}
+.chevron{width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.chevron::before{content:'';display:block;width:13px;height:13px;border-top:3px solid #8a7a6a;border-right:3px solid #8a7a6a;border-radius:2px;}
+.chevron-right::before{transform:rotate(45deg);margin-left:3px;}
+.chevron-left::before{transform:rotate(-135deg);margin-left:7px;}
 </style>
 </head>
 <body>
@@ -79,10 +103,11 @@ body{background:#1e1208;color:#e8ddd0;font-family:-apple-system,BlinkMacSystemFo
 <div class="screen active" id="screen-main">
   <div class="header" id="header-btn">
     <div class="hicon">&#x2615;</div>
-    <div>
+    <div style="flex:1;">
       <div class="htitle">Oggi chi paga?</div>
       <div class="hgroup-name" id="gruppo-nome-label">caricamento...</div>
     </div>
+    <div class="chevron chevron-right" style="margin-top:2px;"></div>
   </div>
 
   <div class="section">
@@ -91,31 +116,38 @@ body{background:#1e1208;color:#e8ddd0;font-family:-apple-system,BlinkMacSystemFo
       <button class="toggle-btn active-m" id="toggle-m" type="button">&#9679; Mattina</button>
       <button class="toggle-btn" id="toggle-p" type="button">&#9679; Pomeriggio</button>
     </div>
+    <div class="assenti-card" id="assenti-card" style="display:none;">
+      <div class="assenti-header" id="assenti-header">
+        <div style="font-size:11px;font-weight:500;color:#8a7a6a;letter-spacing:.07em;text-transform:uppercase;">Presenze oggi</div>
+        <span class="assenti-arrow" id="assenti-arrow">&#9654;</span>
+      </div>
+      <div class="assenti-body" id="assenti-body">
+        <div class="assenti-list" id="assenti-list"></div>
+      </div></div>
+    </div>
     <div id="panel-mattina">
       <div class="turno-card">
         <div class="winner-box" id="winner-mattina"><span class="w-empty">nessun turno attivo</span></div>
-        <div class="giro-txt" id="giro-mattina"></div>
         <div class="skip-info" id="skip-mattina"></div>
-        <button class="btn-avanza" id="btn-mattina" type="button" disabled>Avanza turno mattina</button>
-        <button class="btn-link" id="reset-mattina" type="button">azzera rotazione mattina</button>
+        <button class="btn-avanza" id="btn-mattina" type="button" disabled>Avanti</button>
       </div>
     </div>
     <div id="panel-pomeriggio" style="display:none;">
       <div class="turno-card">
         <div class="winner-box" id="winner-pomeriggio"><span class="w-empty">nessun turno attivo</span></div>
-        <div class="giro-txt" id="giro-pomeriggio"></div>
         <div class="skip-info" id="skip-pomeriggio"></div>
-        <button class="btn-avanza" id="btn-pomeriggio" type="button" disabled>Avanza turno pomeriggio</button>
-        <button class="btn-link" id="reset-pomeriggio" type="button">azzera rotazione pomeriggio</button>
+        <button class="btn-avanza" id="btn-pomeriggio" type="button" disabled>Avanti</button>
       </div>
     </div>
   </div>
 </div>
 
 <div class="screen" id="screen-gruppi">
-  <div style="padding:16px 14px 40px;max-width:420px;margin:0 auto;">
-    <button class="back-btn" id="btn-back" type="button">&#8592;</button>
-    <div style="font-size:28px;font-weight:700;color:#f0e6d8;margin-bottom:20px;">Gruppi</div>
+  <div style="padding:8px 14px 40px;max-width:420px;margin:0 auto;">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
+      <button id="btn-back" type="button" style="background:none;border:none;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;padding:0;flex-shrink:0;display:flex;align-items:center;justify-content:center;width:28px;height:28px;"><div class="chevron chevron-left"></div></button>
+      <div class="htitle" style="line-height:1;margin:0;">Gruppi</div>
+    </div>
 
     <div class="sec-label">I tuoi gruppi</div>
     <div class="gruppi-list" id="gruppi-list"></div>
@@ -160,7 +192,8 @@ function newGruppo() {
     indiceM: -1,
     indiceP: -1,
     ultimoTurno: { mattina: null, pomeriggio: null },
-    penultimoTurno: { mattina: null, pomeriggio: null }
+    penultimoTurno: { mattina: null, pomeriggio: null },
+    assentiOggi: []
   };
 }
 
@@ -173,6 +206,7 @@ function GG() {
   if (!D.gruppi[D.gruppoAttivo]) D.gruppoAttivo = Object.keys(D.gruppi)[0];
   var g = D.gruppi[D.gruppoAttivo];
   if (!g.colleghi) g.colleghi = [];
+  if (!g.assentiOggi) g.assentiOggi = [];
   if (!g.ultimoTurno) g.ultimoTurno = {mattina:null,pomeriggio:null};
   if (!g.penultimoTurno) g.penultimoTurno = {mattina:null,pomeriggio:null};
   return g;
@@ -208,7 +242,9 @@ function ieri() {
 function listaT(t) {
   var g = GG();
   if (!g || !g.colleghi) return [];
+  var assenti = g.assentiOggi || [];
   return g.colleghi.filter(function(c) {
+    if (assenti.indexOf(c.nome) >= 0) return false;
     return c.turni === 'MP' || (t === 'mattina' && c.turni === 'M') || (t === 'pomeriggio' && c.turni === 'P');
   });
 }
@@ -233,8 +269,62 @@ function prossimo(t) {
   return { nome: lista[idx % n].nome, saltati: [] };
 }
 
+var turnoVisibile = 'mattina';
+
+function renderAssenti() {
+  var g = GG();
+  var card = document.getElementById('assenti-card');
+  var el = document.getElementById('assenti-list');
+  if (!g.colleghi || !g.colleghi.length) { card.style.display = 'none'; el.innerHTML = ''; return; }
+  card.style.display = 'block';
+  document.getElementById('assenti-body').className = 'assenti-body' + (assentiOpen ? ' open' : '');
+  document.getElementById('assenti-arrow').innerHTML = assentiOpen ? '&#9660;' : '&#9654;';
+  var assenti = g.assentiOggi || [];
+  var membriTurno = g.colleghi.filter(function(c) {
+    return c.turni === 'MP' || (turnoVisibile === 'mattina' && c.turni === 'M') || (turnoVisibile === 'pomeriggio' && c.turni === 'P');
+  });
+  if (!membriTurno.length) {
+    el.innerHTML = '<span style="font-size:13px;color:#6a5a4a;padding:6px 4px;display:block;">Nessun membro in questo turno</span>';
+    return;
+  }
+  el.innerHTML = membriTurno.map(function(c) {
+    var isAssente = assenti.indexOf(c.nome) >= 0;
+    var cls = 'assente-row' + (isAssente ? ' assente' : '');
+    var checkCls = isAssente ? 'assente-check' : 'assente-check assente-presente';
+    var check = isAssente ? '' : '&#10003;';
+    var tBadgeCls = c.turni === 'M' ? 'badge bm' : c.turni === 'P' ? 'badge bp' : 'badge bmp';
+    var tLabel = c.turni === 'M' ? 'mat' : c.turni === 'P' ? 'pom' : 'mat+pom';
+    return '<div class="' + cls + '" data-assente="' + xe(c.nome) + '">' +
+      '<div class="' + checkCls + '">' + check + '</div>' +
+      '<span class="assente-nome">' + xe(c.nome) + '</span>' +
+      '<span class="' + tBadgeCls + '">' + tLabel + '</span>' +
+      '</div>';
+  }).join('');
+}
+
+function oggi2() {
+  var d = new Date();
+  return d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate();
+}
+
+function pulisciAssentiSeNuovoGiorno() {
+  var g = GG();
+  if (!g.assentiOggi || !g.assentiOggi.length) return;
+  // Se l'ultimo turno registrato e' di ieri o prima, azzera gli assenti
+  var ultimaData = null;
+  if (g.ultimoTurno.mattina) ultimaData = g.ultimoTurno.mattina.giorno;
+  if (g.ultimoTurno.pomeriggio && (!ultimaData || g.ultimoTurno.pomeriggio.giorno > ultimaData))
+    ultimaData = g.ultimoTurno.pomeriggio.giorno;
+  if (ultimaData && ultimaData !== oggi2()) {
+    g.assentiOggi = [];
+    save();
+  }
+}
+
 function render() {
   if (!D) return;
+  pulisciAssentiSeNuovoGiorno();
+  renderAssenti();
   var g = GG();
   document.getElementById('gruppo-nome-label').textContent = D.gruppoAttivo;
   var rM = prossimo('mattina');
@@ -254,15 +344,13 @@ function render() {
       if (pen && pen[t] && pen[t].nome) {
         prev = '<div class="w-prev">Ultimo pagante: ' + xe(pen[t].nome) + '</div>';
       }
-      box.innerHTML = '<div class="w-name">' + xe(res.nome) + '</div>' +
-        '<div class="w-sub">offre il caffe</div>' + prev;
+      box.innerHTML = '<div class="w-sub">Oggi paga</div>' +
+        '<div class="w-name">' + xe(res.nome) + '</div>' + prev;
       var pos = -1;
       for (var j = 0; j < lista.length; j++) { if (lista[j].nome === res.nome) { pos = j; break; } }
-      gEl.textContent = 'posizione ' + (pos+1) + '/' + lista.length;
       sEl.textContent = res.saltati.length ? 'Saltati: ' + res.saltati.join(', ') : '';
     } else {
       box.innerHTML = '<span class="w-empty">nessun turno attivo</span>';
-      gEl.textContent = lista.length ? 'premi il pulsante per iniziare' : 'Nessun membro in questo turno';
       sEl.textContent = '';
     }
     btn.disabled = !lista.length;
@@ -288,14 +376,17 @@ function renderGruppi() {
 
 function renderMembri() {
   if (!D) return;
+  pulisciAssentiSeNuovoGiorno();
+  renderAssenti();
   var g = GG();
   document.getElementById('label-membri').textContent = 'Membri - ' + D.gruppoAttivo;
   var el = document.getElementById('lista-colleghi');
   if (!g.colleghi.length) { el.innerHTML = '<span class="empty">Nessun membro aggiunto</span>'; return; }
   el.innerHTML = g.colleghi.map(function(c, i) {
     var b = '';
-    if (c.turni === 'MP' || c.turni === 'M') b += '<span class="badge bm">mat</span>';
-    if (c.turni === 'MP' || c.turni === 'P') b += '<span class="badge bp">pom</span>';
+    if (c.turni === 'MP') b += '<span class="badge bmp">mat+pom</span>';
+    else if (c.turni === 'M') b += '<span class="badge bm">mat</span>';
+    else if (c.turni === 'P') b += '<span class="badge bp">pom</span>';
     return '<div class="collega-row">' +
       '<span class="c-idx">' + (i+1) + '.</span>' +
       '<span class="c-nome">' + xe(c.nome) + '</span>' +
@@ -376,6 +467,7 @@ setInterval(function() {
     Object.keys(data.gruppi).forEach(function(k) {
       var g = data.gruppi[k];
       if (!g.colleghi) g.colleghi = [];
+  if (!g.assentiOggi) g.assentiOggi = [];
       if (!g.ultimoTurno) g.ultimoTurno = {mattina:null,pomeriggio:null};
       if (!g.penultimoTurno) g.penultimoTurno = {mattina:null,pomeriggio:null};
       if (g.indiceM === undefined) g.indiceM = -1;
@@ -392,30 +484,45 @@ fetch(FB).then(function(r) { return r.json(); }).then(function(data) {
 }).catch(function() { render(); });
 
 // ── EVENTI ──
+var assentiOpen = false;
+document.getElementById('assenti-header').addEventListener('click', function() {
+  assentiOpen = !assentiOpen;
+  var body = document.getElementById('assenti-body');
+  var arrow = document.getElementById('assenti-arrow');
+  body.className = 'assenti-body' + (assentiOpen ? ' open' : '');
+  arrow.innerHTML = assentiOpen ? '&#9660;' : '&#9654;';
+});
+
+document.getElementById('assenti-list').addEventListener('click', function(e) {
+  var row = e.target.closest('[data-assente]');
+  if (!row) return;
+  var nome = row.getAttribute('data-assente');
+  var g = GG();
+  if (!g.assentiOggi) g.assentiOggi = [];
+  var idx = g.assentiOggi.indexOf(nome);
+  if (idx >= 0) g.assentiOggi.splice(idx, 1);
+  else g.assentiOggi.push(nome);
+  save(); render();
+});
+
 document.getElementById('toggle-m').addEventListener('click', function() {
+  turnoVisibile = 'mattina';
   document.getElementById('panel-mattina').style.display = 'block';
   document.getElementById('panel-pomeriggio').style.display = 'none';
   document.getElementById('toggle-m').className = 'toggle-btn active-m';
   document.getElementById('toggle-p').className = 'toggle-btn';
+  renderAssenti();
 });
 document.getElementById('toggle-p').addEventListener('click', function() {
+  turnoVisibile = 'pomeriggio';
   document.getElementById('panel-mattina').style.display = 'none';
   document.getElementById('panel-pomeriggio').style.display = 'block';
   document.getElementById('toggle-m').className = 'toggle-btn';
   document.getElementById('toggle-p').className = 'toggle-btn active-p';
+  renderAssenti();
 });
 document.getElementById('btn-mattina').addEventListener('click', function() { avanza('mattina'); });
 document.getElementById('btn-pomeriggio').addEventListener('click', function() { avanza('pomeriggio'); });
-document.getElementById('reset-mattina').addEventListener('click', function() {
-  if (confirm('Azzerare la rotazione mattina?')) {
-    var g = GG(); g.indiceM = listaT('mattina').length ? 0 : -1; g.ultimoTurno.mattina = null; save(); render();
-  }
-});
-document.getElementById('reset-pomeriggio').addEventListener('click', function() {
-  if (confirm('Azzerare la rotazione pomeriggio?')) {
-    var g = GG(); g.indiceP = listaT('pomeriggio').length ? 0 : -1; g.ultimoTurno.pomeriggio = null; save(); render();
-  }
-});
 document.getElementById('header-btn').addEventListener('click', function() { renderGruppi(); showScreen('screen-gruppi'); });
 document.getElementById('btn-back').addEventListener('click', function() { showScreen('screen-main'); });
 document.getElementById('gruppi-list').addEventListener('click', function(e) {
